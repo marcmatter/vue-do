@@ -1,25 +1,25 @@
-import { SerializeStore, StoreAdapter } from '../types/Adapter'
+import { SerializeStore, StoreAdapter } from '../types/Adapter';
 
 export class LocalStorageAdapter<I> implements StoreAdapter<I> {
   constructor(private name: string, private serializer: SerializeStore<I>) {}
 
-  save(content: I) {
-    const serialized = this.serializer.serialize(content)
+  save(content: I): boolean {
+    const serialized = this.serializer.serialize(content);
 
     try {
-      localStorage.setItem(this.name, serialized)
+      localStorage.setItem(this.name, serialized);
 
-      return true
+      return true;
     } catch {
-      return false
+      return false;
     }
   }
 
-  load() {
-    const serialized = localStorage.getItem(this.name)
+  load(): I | undefined {
+    const serialized = localStorage.getItem(this.name);
 
-    if (!serialized) return undefined
+    if (!serialized) return undefined;
 
-    return this.serializer.parse(serialized)
+    return this.serializer.parse(serialized);
   }
 }

@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="todo-item"
-  >
+  <div class="todo-item">
     <span class="drag-handle">
       <DragHandleIcon
         :class="{
-          'hidden': !hasDragHandle
+          hidden: !hasDragHandle,
         }"
       />
     </span>
@@ -14,20 +12,20 @@
         <input
           class="title"
           :class="{
-            'done': todoItem.isDone
+            done: todoItem.isDone,
           }"
           :value="todoItem.name"
           @keypress.enter="changeName"
           @blur="changeName"
           type="text"
-        >
+        />
         <p
           v-if="todoItem.dueDate"
           class="due-date"
           :class="{
-            'expired': isPastDue,
-            'warning': isOnDue,
-            'done': todoItem.isDone
+            expired: isPastDue,
+            warning: isOnDue,
+            done: todoItem.isDone,
           }"
         >
           Due
@@ -35,28 +33,25 @@
             :value="todoItem.dueDate.format('DD.MM.YYYY')"
             maxlength="10"
             type="text"
-          >
+          />
         </p>
-        <p
-          v-else
-          class="due-date"
-        >
+        <p v-else class="due-date">
           <input
             value="No due date"
             maxlength="10"
-            @focus="(event) => event.target.value = ''"
-            @blur="(event) => event.target.value = 'No due date'"
+            @focus="(event) => (event.target.value = '')"
+            @blur="(event) => (event.target.value = 'No due date')"
             @keypress.enter="(event) => event.target.blur()"
             placeholder="dd.mm.yyyy"
             type="text"
-          >
+          />
         </p>
       </div>
     </div>
     <div
       class="toggle"
       :class="{
-        'active': todoItem.isDone
+        active: todoItem.isDone,
       }"
       @click="onPatch({ isDone: !todoItem.isDone })"
     >
@@ -66,11 +61,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, Prop, PropType } from "vue";
-import { Dayjs } from "../utils";
-import DragHandleIcon from "../components/DragHandleIcon.vue";
-import CheckmarkIcon from "../components/CheckmarkIcon.vue";
-import { TodoEntry } from "../types/Todo";
+import { computed, defineComponent, Prop, PropType } from 'vue';
+import { Dayjs } from '../utils';
+import DragHandleIcon from '../components/DragHandleIcon.vue';
+import CheckmarkIcon from '../components/CheckmarkIcon.vue';
+import { TodoEntry } from '../types/Todo';
 
 export default defineComponent({
   name: 'TodoItem',
@@ -83,41 +78,45 @@ export default defineComponent({
   props: {
     todoItem: {
       required: true,
-      type: Object as PropType<TodoEntry>
+      type: Object as PropType<TodoEntry>,
     },
     hasDragHandle: {
       required: false,
       default: true,
-      type: Boolean
+      type: Boolean,
     },
     onPatch: {
       required: true,
-      type: Function as PropType<(fields: Partial<TodoEntry>) => any>
+      type: Function as PropType<(fields: Partial<TodoEntry>) => any>,
     },
     onDelete: {
       required: true,
-      type: Function as PropType<() => any>
-    }
+      type: Function as PropType<() => any>,
+    },
   },
 
-  setup (props) {
-    const isPastDue = computed(() => props.todoItem.dueDate?.isBefore(Dayjs(), 'day'))
-    const isOnDue = computed(() => props.todoItem.dueDate?.isSame(Dayjs(), 'day'))
+  setup(props) {
+    const isPastDue = computed(() =>
+      props.todoItem.dueDate?.isBefore(Dayjs(), 'day')
+    );
+    const isOnDue = computed(() =>
+      props.todoItem.dueDate?.isSame(Dayjs(), 'day')
+    );
 
-    function changeName (event: InputEvent, shouldBlur = false) {
-      if (!event || !event.target) return false
+    function changeName(event: InputEvent, shouldBlur = false) {
+      if (!event || !event.target) return false;
 
-      const eventTarget = event.target as HTMLInputElement
-      const inputValue = eventTarget.value
+      const eventTarget = event.target as HTMLInputElement;
+      const inputValue = eventTarget.value;
 
       if (!inputValue.length) {
-        props.onDelete()
+        props.onDelete();
       } else {
-        props.onPatch({ name: inputValue })
+        props.onPatch({ name: inputValue });
       }
 
       if (shouldBlur) {
-        eventTarget.blur()
+        eventTarget.blur();
       }
     }
 
@@ -126,9 +125,9 @@ export default defineComponent({
 
       isPastDue,
       isOnDue,
-    }
-  }
-})
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

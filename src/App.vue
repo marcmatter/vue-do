@@ -1,51 +1,45 @@
 <template>
-  <TodoView v-if="isLoaded && false" />
-  <TableDemo v-if="false" />
-  <ProductDemo v-if="true" />
+  <TodoView v-if="isLoaded" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { useTodoStore, todoStoreLocalStorageAdapter } from './stores/todo'
-import TodoView from './containers/TodoView.vue'
-import './styles/main.scss'
-import TableDemo from "./containers/TableDemo.vue";
-import ProductDemo from "./containers/ProductDemo.vue";
+import { defineComponent, onMounted, ref, watch } from 'vue';
+import { useTodoStore, todoStoreLocalStorageAdapter } from './stores/todo';
+import TodoView from './containers/TodoView.vue';
+import './styles/main.scss';
 
 export default defineComponent({
   name: 'App',
 
   components: {
-    ProductDemo,
-    TableDemo,
-    TodoView
+    TodoView,
   },
 
-  setup () {
-    const todoStore = useTodoStore()
+  setup() {
+    const todoStore = useTodoStore();
 
-    const isLoaded = ref(false)
+    const isLoaded = ref(false);
 
     onMounted(() => {
-      const todoStoreFromLocalStorage = todoStoreLocalStorageAdapter.load()
+      const todoStoreFromLocalStorage = todoStoreLocalStorageAdapter.load();
       if (todoStoreFromLocalStorage) {
-        todoStore.$state.entries = todoStoreFromLocalStorage.entries
-        todoStore.$state.categories = todoStoreFromLocalStorage.categories
+        todoStore.$state.entries = todoStoreFromLocalStorage.entries;
+        todoStore.$state.categories = todoStoreFromLocalStorage.categories;
       }
-      isLoaded.value = true
-    })
+      isLoaded.value = true;
+    });
 
     watch(
       () => todoStore.$state,
       () => todoStoreLocalStorageAdapter.save(todoStore.$state),
       { deep: true }
-    )
+    );
 
     return {
-      isLoaded
-    }
-  }
-})
+      isLoaded,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

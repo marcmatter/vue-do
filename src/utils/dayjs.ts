@@ -1,6 +1,6 @@
-import Dayjs from 'dayjs'
-import customParsePlugin from 'dayjs/plugin/customParseFormat'
+import Dayjs from 'dayjs';
+import customParsePlugin from 'dayjs/plugin/customParseFormat';
 
-Dayjs.extend(customParsePlugin)
+Dayjs.extend(customParsePlugin);
 
-export default Dayjs
+export default Dayjs;

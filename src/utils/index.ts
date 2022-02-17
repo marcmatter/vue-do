@@ -1,5 +1,3 @@
-import Dayjs from './dayjs'
+import Dayjs from './dayjs';
 
-export {
-  Dayjs
-}
+export { Dayjs };

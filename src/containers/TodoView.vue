@@ -6,13 +6,19 @@
       group="todoStore_entries"
       item-key="id"
       handle=".drag-handle"
-      @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
+      @end="
+        (event) =>
+          todoStore.moveEntry(
+            todoStore.entries[event.oldIndex].id,
+            event.newIndex
+          )
+      "
     >
-      <template #item="{element}">
+      <template #item="{ element }">
         <TodoItem
           :key="element.id"
           :todo-item="element"
-          @patch="item => todoStore.patchEntry(element.id, item)"
+          @patch="(item) => todoStore.patchEntry(element.id, item)"
           @delete="() => todoStore.deleteEntry(element.id)"
         />
       </template>
@@ -21,39 +27,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { useTodoStore } from "../stores/todo";
-import Draggable from "vuedraggable";
-import { Dayjs } from "../utils";
-import TodoItem from "../components/TodoItem.vue";
-
+import { defineComponent } from 'vue';
+import { useTodoStore } from '../stores/todo';
+import Draggable from 'vuedraggable';
+import { Dayjs } from '../utils';
+import TodoItem from '../components/TodoItem.vue';
 
 export default defineComponent({
   name: 'TodoView',
 
   components: {
     TodoItem,
-    Draggable
+    Draggable,
   },
 
-  setup () {
-    const todoStore = useTodoStore()
+  setup() {
+    const todoStore = useTodoStore();
 
     return {
       Dayjs,
-      todoStore
-    }
-  }
-})
+      todoStore,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
 .todo-title {
   @apply text-8xl font-bold m-10 text-transparent bg-clip-text;
 
-  background-image:
-    radial-gradient(circle at 60% -20%, rgba(252,70,107,1) 0%, rgba(252,70,107,0) 90%),
-    linear-gradient(16deg, rgba(18,212,185,1) 0%, rgba(0,153,255,1) 100%);
+  background-image: radial-gradient(
+      circle at 60% -20%,
+      rgba(252, 70, 107, 1) 0%,
+      rgba(252, 70, 107, 0) 90%
+    ),
+    linear-gradient(16deg, rgba(18, 212, 185, 1) 0%, rgba(0, 153, 255, 1) 100%);
 }
 
 .todo-box {
