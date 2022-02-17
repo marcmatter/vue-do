@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, onBeforeMount, ref } from 'vue';
+import Icon from './Icon.vue';
 
 export default defineComponent({
   name: 'Icon',

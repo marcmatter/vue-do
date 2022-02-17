@@ -1,8 +1,9 @@
 <template>
+  <div class="w-full h-3 absolute top-0 left-0 top-rainbow-bar" />
   <div
-    class="w-full h-3 absolute top-0 left-0 top-rainbow-bar"
+    class="w-full h-3 absolute top-0 left-0 top-rainbow-bar is-loading"
     :class="{
-      'is-loading': isLoading,
+      'hide': !isLoading
     }"
   />
 </template>
@@ -27,13 +28,24 @@ export default defineComponent({
   background-image: linear-gradient(
     90deg,
     rgba(252, 70, 107, 0.8) 0%,
-    rgba(252, 222, 70, 0.8) 29.37%,
-    rgba(18, 212, 185, 0.8) 65.31%,
-    rgba(0, 153, 255, 0.8) 100%
+    rgba(252, 222, 70, 0.8) 15%,
+    rgba(18, 212, 185, 0.8) 32%,
+    rgba(0, 153, 255, 0.8) 50%,
+    rgba(18, 212, 185, 0.8) 66%,
+    rgba(252, 222, 70, 0.8) 85%,
+    rgba(252, 70, 107, 0.8) 100%
   );
+  background-size: 200% 100%;
+  background-repeat: repeat-x;
+
+  transition: opacity 0.5s ease;
 
   &.is-loading {
-    animation: top-rainbow-loading 5s infinite linear;
+    animation: top-rainbow-loading 2.5s infinite linear;
+  }
+
+  &.hide {
+    @apply opacity-0;
   }
 }
 
@@ -42,7 +54,7 @@ export default defineComponent({
     background-position-x: 0%;
   }
   100% {
-    background-position-x: 100%;
+    background-position-x: 200%;
   }
 }
 </style>

@@ -1,18 +1,25 @@
 <template>
-  <h1 class="todo-title">Todo</h1>
-  <div class="fixed opacity-5 w-full h-full top-0 left-0">
-    <p class="w-[140vw] h-[140vh] text-justify uppercase text-sm rotate-12 translate-x-[-10%] translate-y-[-12%]">
-      <text>
-      <template v-for="(item, index) in thingsToDo">
-        <tspan :key="`8913_${index}_1`" v-if="index % 2" class="font-bold">
-          {{ item }}&nbsp;
-        </tspan>
-        <tspan :key="`8913_${index}_2`" v-else class="font-regular">
-          {{ item }}&nbsp;
-        </tspan>
-      </template>
-      </text>
-    </p>
+  <div class="h-screen w-full flex justify-center items-center flex flex-col">
+    <div class="p-8 rounded-2xl bg-zinc-50 bg-opacity-5">
+      <h1 class="vuedo-icon text-7xl font-semibold mx-16 mt-4 mb-8">VueDo</h1>
+      <TextSeparator class="my-4">LOG IN TO SERVER</TextSeparator>
+
+      <InputField class="my-4" icon="user-circle" type="text" placeholder="Username" />
+      <InputField class="my-4" icon="key" type="password" placeholder="Password" icon-class="p-0.5" />
+
+      <DecoratedButton class="my-4 mx-auto bg-blue-600 border-blue-600 hover:border-blue-400" icon="log-in">
+        Log In
+      </DecoratedButton>
+
+      <TextSeparator class="mt-8 my-4">ALTERNATIVELY</TextSeparator>
+
+      <DecoratedButton class="my-4 mx-auto bg-indigo-600 border-indigo-600 hover:border-indigo-400" icon="computer-alt">
+        Store data locally
+      </DecoratedButton>
+      <span class="text-sm block max-w-xs text-center leading-tight mx-auto text-zinc-400">
+        VueDo can store your data in the browser, which means you can use it without a connection to our servers.
+      </span>
+    </div>
   </div>
 </template>
 
@@ -20,13 +27,20 @@
 import { defineComponent } from 'vue';
 import { useTodoStore } from '../stores/todo';
 import { Dayjs } from '../utils';
-
-import thingsToDo from '../data/thingsToDo';
+import InputField from '../components/InputField.vue';
+import TextSeparator from '../components/TextSeparator.vue';
+import Icon from '../components/Icon.vue';
+import DecoratedButton from '../components/DecoratedButton.vue';
 
 export default defineComponent({
-  name: 'TodoView',
+  name: 'LoginView',
 
-  components: {},
+  components: {
+    DecoratedButton,
+    Icon,
+    InputField,
+    TextSeparator,
+  },
 
   setup() {
     const todoStore = useTodoStore();
@@ -34,7 +48,6 @@ export default defineComponent({
     return {
       Dayjs,
       todoStore,
-      thingsToDo,
     };
   },
 });
@@ -44,11 +57,7 @@ export default defineComponent({
 .todo-title {
   @apply text-8xl font-bold m-10 text-transparent bg-clip-text;
 
-  background-image: radial-gradient(
-      circle at 60% -20%,
-      rgba(252, 70, 107, 1) 0%,
-      rgba(252, 70, 107, 0) 90%
-    ),
+  background-image: radial-gradient(circle at 60% -20%, rgba(252, 70, 107, 1) 0%, rgba(252, 70, 107, 0) 90%),
     linear-gradient(16deg, rgba(18, 212, 185, 1) 0%, rgba(0, 153, 255, 1) 100%);
 }
 
