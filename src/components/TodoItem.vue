@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, Prop, PropType } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import { Dayjs } from '../utils';
 import DragHandleIcon from '../components/DragHandleIcon.vue';
 import CheckmarkIcon from '../components/CheckmarkIcon.vue';
