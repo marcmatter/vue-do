@@ -1,45 +1,32 @@
 <template>
   <h1 class="todo-title">Todo</h1>
-  <div class="todo-box">
-    <Draggable
-      :list="[...todoStore.entries]"
-      group="todoStore_entries"
-      item-key="id"
-      handle=".drag-handle"
-      @end="
-        (event) =>
-          todoStore.moveEntry(
-            todoStore.entries[event.oldIndex].id,
-            event.newIndex
-          )
-      "
-    >
-      <template #item="{ element }">
-        <TodoItem
-          :key="element.id"
-          :todo-item="element"
-          @patch="(item) => todoStore.patchEntry(element.id, item)"
-          @delete="() => todoStore.deleteEntry(element.id)"
-        />
+  <div class="fixed opacity-5 w-full h-full top-0 left-0">
+    <p class="w-[140vw] h-[140vh] text-justify uppercase text-sm rotate-12 translate-x-[-10%] translate-y-[-12%]">
+      <text>
+      <template v-for="(item, index) in thingsToDo">
+        <tspan :key="`8913_${index}_1`" v-if="index % 2" class="font-bold">
+          {{ item }}&nbsp;
+        </tspan>
+        <tspan :key="`8913_${index}_2`" v-else class="font-regular">
+          {{ item }}&nbsp;
+        </tspan>
       </template>
-    </Draggable>
+      </text>
+    </p>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useTodoStore } from '../stores/todo';
-import Draggable from 'vuedraggable';
 import { Dayjs } from '../utils';
-import TodoItem from '../components/TodoItem.vue';
+
+import thingsToDo from '../data/thingsToDo';
 
 export default defineComponent({
   name: 'TodoView',
 
-  components: {
-    TodoItem,
-    Draggable,
-  },
+  components: {},
 
   setup() {
     const todoStore = useTodoStore();
@@ -47,6 +34,7 @@ export default defineComponent({
     return {
       Dayjs,
       todoStore,
+      thingsToDo,
     };
   },
 });
