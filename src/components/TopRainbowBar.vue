@@ -3,7 +3,7 @@
   <div
     class="w-full h-3 absolute top-0 left-0 top-rainbow-bar is-loading"
     :class="{
-      'hide': !isLoading
+      hide: !isLoading,
     }"
   />
 </template>
@@ -25,7 +25,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .top-rainbow-bar {
-  background-image: linear-gradient(
+  /*background-image: linear-gradient(
     90deg,
     rgba(252, 70, 107, 0.8) 0%,
     rgba(252, 222, 70, 0.8) 15%,
@@ -38,10 +38,13 @@ export default defineComponent({
   background-size: 200% 100%;
   background-repeat: repeat-x;
 
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;*/
+  background-image: repeating-linear-gradient(-30deg, theme('colors.primary') 0px, theme('colors.primary') 15px, theme('colors.secondary') 15px, theme('colors.secondary') 30px);
+  background-repeat: true;
+  background-size: 200% 100%;
 
   &.is-loading {
-    animation: top-rainbow-loading 2.5s infinite linear;
+    animation: top-rainbow-loading 15s infinite linear;
   }
 
   &.hide {

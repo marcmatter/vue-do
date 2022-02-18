@@ -1,10 +1,16 @@
 <template>
   <div
-    class="block bg-zinc-700 border border-zinc-600 rounded-lg flex pl-2 outline-none focus-within:border-zinc-500"
+    :class="`
+      block bg-zinc-100 dark:bg-zinc-700 border border-zinc-200 dark:border-zinc-600
+      rounded-lg flex pl-2 outline-none focus-within:border-zinc-400 focus-within:dark:border-zinc-500
+    `"
   >
     <Icon v-if="icon" :icon="icon" :class="`w-6 h-6 my-auto flex-shrink-0 ${iconClass || ''}`" />
     <input
-      :class="`bg-transparent text-white py-2 pl-2 pr-4 w-full focus:outline-none ${inputClass || ''}`"
+      :class="`
+        bg-transparent text-zinc-800 dark:text-white py-2
+        pl-2 pr-4 w-full focus:outline-none ${inputClass || ''}
+      `"
       :type="type"
       :placeholder="placeholder"
       :value="value"

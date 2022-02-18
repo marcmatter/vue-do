@@ -4,7 +4,12 @@ module.exports = {
     fontFamily: {
       sans: 'Inter, sans-serif',
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#D1603D',
+        secondary: '#6096BA',
+      },
+    },
   },
   plugins: [],
 };
