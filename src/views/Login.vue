@@ -1,6 +1,6 @@
 <template>
   <div class="h-full w-full flex justify-center items-center flex flex-col">
-    <div class="p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-50 dark:bg-opacity-5 mb-20">
+    <div class="p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-50 dark:bg-opacity-5">
       <h1 class="vuedo-icon text-7xl font-bold mx-16 mt-4 mb-8 bg-clip-text">
         <span class="text-secondary">Vue</span>
         <span class="text-primary">Do</span>

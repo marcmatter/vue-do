@@ -1,5 +1,5 @@
 <template>
-  <footer class="h-15 bg-zinc-900 w-screen-- flex justify-between gap-2 overflow-hidden p-3 absolute bottom-0">
+  <footer class="h-15 bg-white text-zinc-700 dark:text-white dark:bg-zinc-900 w-screen-- flex justify-between gap-2 overflow-hidden p-3 sticky bottom-0">
     <div class="text-sm">
       <p>Released under the <span class="font-bold">MPL-2.0 Licence.</span></p>
       <p class="font-thin">Copyright © {{ copyRightYear }} Marc Matter & Neo Samardzic</p>
@@ -14,45 +14,43 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Icon from "./Icon.vue";
+import Icon from './Icon.vue';
 
 export default defineComponent({
-  name: "AppFooter",
+  name: 'AppFooter',
   components: {
-    Icon
+    Icon,
   },
   data() {
     return {
       socialMediaLinks: [
         {
-          name: "github",
-          link: "https://github.com/marcmatter/vue-do",
+          name: 'github',
+          link: 'https://github.com/marcmatter/vue-do',
         },
         {
-          name: "twitter",
-          link: "https://example.com",
+          name: 'twitter',
+          link: 'https://example.com',
         },
         {
-          name: "facebook",
-          link: "https://example.com",
+          name: 'facebook',
+          link: 'https://example.com',
         },
-      ]
-    }
+      ],
+    };
   },
   computed: {
     copyRightYear() {
       const startYear = 2022;
       const currentYear = new Date().getFullYear();
       if (startYear === currentYear) {
-        return startYear
+        return startYear;
       }
 
-      return `${startYear} - ${currentYear}`
-    }
-  }
+      return `${startYear} - ${currentYear}`;
+    },
+  },
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

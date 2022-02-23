@@ -7,5 +7,5 @@ router.beforeEach((to, from, next) => {
     .reverse()
     .find((route: any) => route.pageTitle);
 
-  if (nearestTitle) document.title = `${nearestTitle || "ToDo App"} - VueDo`;
+  if (nearestTitle) document.title = `${nearestTitle || 'ToDo App'} - VueDo`;
 });
