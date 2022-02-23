@@ -1,17 +1,36 @@
 import { Dayjs } from 'dayjs';
 
-export interface TodoCategory {
-  id: number;
-  name: string;
-  color: string;
+enum TodoEntryState {
+  Open,
+  Closed,
 }
 
-export interface TodoEntry {
+interface TodoEntry {
   id: number;
   name: string;
-  isDone: boolean;
+  description?: string;
+  state: TodoEntryState;
   dueDate?: Dayjs;
-  categories: Set<number>;
+  categoryIds: Set<number>;
+
+  isDeleted: boolean;
+  deletedAt?: Dayjs;
+
+  createdAt: Dayjs;
+  modifiedAt: Dayjs;
+}
+
+interface TodoCategory {
+  id: number;
+  name: string;
+  description?: string;
+  color?: string;
+
+  isDeleted: boolean;
+  deletedAt?: Dayjs;
+
+  createdAt: Dayjs;
+  modifiedAt: Dayjs;
 }
 
 export interface TodoStore {
