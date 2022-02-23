@@ -4,7 +4,7 @@
   >
     <div class="flex justify-between text-md p-2 pb-1">
       <span>Max Mustermann</span>
-      <span>
+      <span @click="logOut">
         <button>
           <Icon icon="log-out" />
         </button>
@@ -18,15 +18,24 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import Icon from './Icon.vue';
-import NavigationSection from "./NavigationSection.vue";
+import NavigationSection from './NavigationSection.vue';
+import { useConfigStore } from '../stores/config';
+import router from '../router';
 
 export default defineComponent({
   name: 'Navigator',
   components: {
     Icon,
-    NavigationSection
+    NavigationSection,
   },
   setup() {
+    const configStore = useConfigStore();
+
+    const logOut = () => {
+      configStore.logOut();
+      router.push('/login');
+    };
+
     const endpoints = reactive({
       tasks: [
         {
@@ -52,6 +61,7 @@ export default defineComponent({
 
     return {
       endpoints,
+      logOut,
     };
   },
 });

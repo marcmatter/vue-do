@@ -8,7 +8,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Navigator from "../components/Navigator.vue";
+import Navigator from '../components/Navigator.vue';
 
 export default defineComponent({
   name: 'Home',

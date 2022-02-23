@@ -84,9 +84,7 @@ export const useTodoStore = defineStore('todoStore', {
       this.categories.splice(categoryIndex, 1);
     },
     addEntryToCategory(entryId: number, categoryId: number) {
-      const hasExisting = this.entriesToCategories.some(
-        (el) => el.categoryId === categoryId && el.entryId === entryId
-      );
+      const hasExisting = this.entriesToCategories.some((el) => el.categoryId === categoryId && el.entryId === entryId);
 
       if (!hasExisting) {
         this.entriesToCategories.push({

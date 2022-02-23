@@ -14,11 +14,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import './styles/main.scss';
 import TopRainbowBar from './components/TopRainbowBar.vue';
 import AppFooter from './components/AppFooter.vue';
 import router from './router';
+import { configStoreAdapter, useConfigStore } from './stores/config';
 
 export default defineComponent({
   name: 'App',
@@ -29,7 +30,23 @@ export default defineComponent({
   },
 
   setup() {
-    const showFooter = computed(() => ['/login'].includes(router.currentRoute.value.path));
+    const configStore = useConfigStore();
+    const showFooter = computed(() => router.currentRoute.value.meta.showFooter);
+
+    onBeforeMount(() => {
+      const configStateRestored = configStoreAdapter.load();
+      if (configStateRestored) {
+        configStore.$state = configStateRestored;
+      }
+    });
+
+    watch(
+      () => configStore.$state,
+      (value) => {
+        configStoreAdapter.save(value);
+      },
+      { deep: true }
+    );
 
     return {
       showFooter,

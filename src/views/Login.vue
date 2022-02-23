@@ -22,6 +22,7 @@
       <DecoratedButton
         class="my-4 mx-auto !text-white !bg-secondary !border-secondary hover:!border-sky-700 hover:dark:!border-blue-200"
         icon="computer-alt"
+        @click="loginLocally"
       >
         Store data locally
       </DecoratedButton>
@@ -34,11 +35,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useTodoStore } from '../stores/todo';
 import { Dayjs } from '../utils';
 import InputField from '../components/InputField.vue';
 import TextSeparator from '../components/TextSeparator.vue';
 import DecoratedButton from '../components/DecoratedButton.vue';
+import { useConfigStore } from '../stores/config';
+import router from '../router';
 
 export default defineComponent({
   name: 'LoginView',
@@ -50,11 +52,17 @@ export default defineComponent({
   },
 
   setup() {
-    const todoStore = useTodoStore();
+    const configStore = useConfigStore();
+
+    const loginLocally = () => {
+      configStore.useLocally();
+      router.push('/home');
+    };
 
     return {
+      configStore,
       Dayjs,
-      todoStore,
+      loginLocally,
     };
   },
 });

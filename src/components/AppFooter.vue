@@ -7,7 +7,13 @@
       <p class="font-thin">Copyright © {{ copyRightYear }} Marc & Neo</p>
     </div>
     <div class="flex">
-      <a v-for="socialLink in socialMediaLinks" :key="socialLink.name" :href="socialLink.link" target="_blank" class="hover:text-secondary hover:scale-125 transition">
+      <a
+        v-for="socialLink in socialMediaLinks"
+        :key="socialLink.name"
+        :href="socialLink.link"
+        target="_blank"
+        class="hover:text-secondary hover:scale-125 transition"
+      >
         <Icon :icon="socialLink.name + '-circle'" class="h-full w-8 mx-1" />
       </a>
     </div>
