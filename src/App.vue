@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen w-full">
     <TopRainbowBar :is-loading="false" />
-    <main class="flex flex-col min-h-screen justify-center items-center">
+    <main class="flex flex-col justify-center items-center">
       <router-view class="grow-2" />
     </main>
     <AppFooter />

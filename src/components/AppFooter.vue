@@ -1,5 +1,5 @@
 <template>
-  <footer class="h-15 bg-zinc-900 w-screen-- flex justify-between gap-2 overflow-hidden p-3 absolute bottom-0">
+  <footer class="h-15 bg-white text-zinc-700 dark:text-white dark:bg-zinc-900 w-screen-- flex justify-between gap-2 overflow-hidden p-3 sticky bottom-0">
     <div class="text-sm">
       <p>Released under the <span class="font-bold">MPL-2.0 Licence.</span></p>
       <p class="font-thin">Copyright © {{ copyRightYear }} Marc Matter & Neo Samardzic</p>
