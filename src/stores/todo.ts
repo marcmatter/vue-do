@@ -1,20 +1,28 @@
 import { defineStore } from 'pinia';
-import { TodoCategory, TodoEntry, TodoStore } from '../types/Todo';
-import { SerializeStore } from '../types/Adapter';
-import { LocalStorageAdapter } from '../adapters/localStorage';
-import { Dayjs } from '../utils';
+import { TodoCategory, TodoEntry, TodoEntryToCategory } from '../types/Todo';
+
+export interface TodoStore {
+  categories: TodoCategory[];
+  entries: TodoEntry[];
+
+  entriesToCategories: TodoEntryToCategory[];
+}
 
 export const useTodoStore = defineStore('todoStore', {
   state: (): TodoStore => {
     return {
       categories: [],
       entries: [],
+
+      entriesToCategories: [],
     };
   },
 
   actions: {
-    getEntriesForCategory(category: number) {
-      return this.entries.filter((el) => el.categories.has(category));
+    getEntriesForCategory(categoryId: number) {
+      const entryIds = this.entriesToCategories.filter((el) => el.categoryId === categoryId).map((el) => el.entryId);
+
+      return this.entries.filter((el) => entryIds.includes(el.id));
     },
     addEntry(entry: TodoEntry, position?: number) {
       if (position != null) {
@@ -76,66 +84,25 @@ export const useTodoStore = defineStore('todoStore', {
       this.categories.splice(categoryIndex, 1);
     },
     addEntryToCategory(entryId: number, categoryId: number) {
-      const entryIndex = this.entries.findIndex((el) => el.id === entryId);
+      const hasExisting = this.entriesToCategories.some(
+        (el) => el.categoryId === categoryId && el.entryId === entryId
+      );
 
-      this.entries[entryIndex].categories.add(categoryId);
+      if (!hasExisting) {
+        this.entriesToCategories.push({
+          categoryId,
+          entryId,
+        });
+      }
     },
     removeEntryFromCategory(entryId: number, categoryId: number) {
-      const entryIndex = this.entries.findIndex((el) => el.id === entryId);
+      const existingEntryIndex = this.entriesToCategories.findIndex(
+        (el) => el.categoryId === categoryId && el.entryId === entryId
+      );
 
-      this.entries[entryIndex].categories.delete(categoryId);
+      if (existingEntryIndex !== -1) {
+        this.entriesToCategories.splice(existingEntryIndex, 1);
+      }
     },
   },
 });
-
-export const serializeTodoStore: SerializeStore<TodoStore> = {
-  serialize(todoStore) {
-    const categories = todoStore.categories.map((el) => ({
-      id: el.id,
-      color: el.color,
-      name: el.name,
-    }));
-
-    const entries = todoStore.entries.map((el) => ({
-      id: el.id,
-      isDone: el.isDone,
-      dueDate: el.dueDate && el.dueDate.toString(),
-      categories: Array.from(el.categories),
-      name: el.name,
-    }));
-
-    return JSON.stringify({
-      categories,
-      entries,
-    });
-  },
-
-  parse(input) {
-    try {
-      const parsed = JSON.parse(input);
-
-      const categories = parsed.categories.map((el: any) => ({
-        id: el.id,
-        color: el.color,
-        name: el.name,
-      }));
-
-      const entries = parsed.entries.map((el: any) => ({
-        id: el.id,
-        isDone: el.isDone,
-        dueDate: el.dueDate ? Dayjs(el.dueDate) : undefined,
-        categories: new Set(el.categories),
-        name: el.name,
-      }));
-
-      return {
-        categories,
-        entries,
-      };
-    } catch {
-      return undefined;
-    }
-  },
-};
-
-export const todoStoreLocalStorageAdapter = new LocalStorageAdapter('todo:todoStore', serializeTodoStore);
