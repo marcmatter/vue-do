@@ -2,7 +2,7 @@
   <div class="min-h-screen w-full">
     <TopRainbowBar :is-loading="false" />
     <main
-      class="flex flex-col justify-center items-center h-screen"
+      class="flex h-screen flex-col items-center justify-center"
       :class="{
         'md:pb-16': showFooter,
       }"

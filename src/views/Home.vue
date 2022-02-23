@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full md:flex justify-between items-center md:px-10 md:gap-10 max-w-screen-xl mx-auto">
+  <div class="mx-auto h-full w-full max-w-screen-xl items-center justify-between md:flex md:gap-10 md:px-10">
     <Navigator />
     <!-- To-Do List -->
     <section class="w-2/3">VueDo</section>

@@ -1,12 +1,15 @@
 <template>
   <section
-    class="w-screen pt-5 md:pt-2 md:w-1/3 h-full md:h-5/6 bg-zinc-50 dark:bg-opacity-5 dark:bg-zinc-50 text-zinc-700 dark:text-zinc-50 rounded-xl p-2 shadow md:max-w-xs"
+    class="h-full w-screen select-none rounded-xl bg-zinc-50 p-2 pt-7 text-zinc-700 shadow dark:bg-zinc-50 dark:bg-opacity-5 dark:text-zinc-50 md:h-5/6 md:w-1/3 md:max-w-xs md:pt-2"
   >
-    <div class="flex justify-between text-3xl md:text-base p-2 pb-1">
+    <div class="mb-5 ml-1 md:hidden">
+      <Icon icon="close-rectangle-f" class="h-10 w-10" />
+    </div>
+    <div class="flex justify-between p-2 pb-1 text-3xl md:text-base">
       <span>Max Mustermann</span>
       <span @click="logOut">
         <button>
-          <Icon icon="log-out" />
+          <Icon class="h-10 w-10 md:h-5 md:w-5" icon="log-out" />
         </button>
       </span>
     </div>

@@ -1,7 +1,7 @@
 import { NavigationGuardWithThis } from 'vue-router';
 import { useConfigStore } from '../stores/config';
 
-export const beforeEachHook: NavigationGuardWithThis<any> = (to, from) => {
+export const beforeEachHook: NavigationGuardWithThis<any> = (to) => {
   if (to.meta) {
     const configStore = useConfigStore();
 

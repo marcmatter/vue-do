@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full h-3 absolute pz-3 top-0 left-0 top-rainbow-bar" />
+  <div class="pz-3 top-rainbow-bar absolute top-0 left-0 h-3 w-full" />
   <div
-    class="w-full h-3 absolute top-0 left-0 top-rainbow-bar is-loading"
+    class="top-rainbow-bar is-loading absolute top-0 left-0 h-3 w-full"
     :class="{
       hide: !isLoading,
     }"

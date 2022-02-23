@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="h-16 bg-white text-zinc-700 dark:text-white dark:bg-zinc-900 flex w-full justify-between gap-2 overflow-hidden p-3 md:absolute bottom-0"
+    class="bottom-0 flex h-16 w-full justify-between gap-2 overflow-hidden bg-white p-3 text-zinc-700 dark:bg-zinc-900 dark:text-white md:absolute"
   >
     <div class="text-sm">
       <p>Released under the <span class="font-bold">MPL-2.0 Licence.</span></p>
@@ -12,9 +12,9 @@
         :key="socialLink.name"
         :href="socialLink.link"
         target="_blank"
-        class="hover:text-secondary hover:scale-125 transition"
+        class="transition hover:scale-125 hover:text-secondary"
       >
-        <Icon :icon="socialLink.name + '-circle'" class="h-full w-8 mx-1" />
+        <Icon :icon="socialLink.name + '-circle'" class="mx-1 h-full w-8" />
       </a>
     </div>
   </footer>

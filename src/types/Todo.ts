@@ -11,13 +11,13 @@ export interface TodoEntry {
   description?: string;
   state: TodoEntryState;
   dueDate?: Dayjs;
+}
 
 export interface TodoStore {
   categories: TodoCategory[];
   entries: TodoEntry[];
 
   entriesToCategories: TodoEntryToCategory[];
-}
   isDeleted: boolean;
   deletedAt?: Dayjs;
 

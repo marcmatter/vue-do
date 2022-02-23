@@ -1,13 +1,13 @@
 <template>
   <button
     :class="`
-      flex bg-zinc-100 dark:bg-zinc-600 py-2 justify-center items-center
-      text-center text-zinc-600 dark:text-white rounded-lg border border-zinc-200
-      dark:border-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-400 ${icon ? 'pl-5 pr-7' : 'px-7'}
+      flex items-center justify-center rounded-lg border border-zinc-200
+      bg-zinc-100 py-2 text-center text-zinc-600 hover:border-zinc-300 dark:border-zinc-500
+      dark:bg-zinc-600 dark:text-white dark:hover:border-zinc-400 ${icon ? 'pl-5 pr-7' : 'px-7'}
     `"
   >
     <Icon v-if="icon" :icon="icon" :class="`mr-2 ${iconClass || ''}`" />
-    <span :class="`font-medium block h-6 ${textClass || ''}`">
+    <span :class="`block h-6 font-medium ${textClass || ''}`">
       <slot />
     </span>
   </button>
