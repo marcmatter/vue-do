@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/login',
       component: () => import(/* webpackChunkName: "views_Login" */ '../views/Login.vue'),
     },
+    {
+      name: 'Home',
+      path: '/home',
+      component: () => import(/* webpackChunkName: "views_Home" */ '../views/Home.vue'),
+    }
   ],
 });
 
