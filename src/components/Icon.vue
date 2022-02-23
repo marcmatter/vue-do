@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, ref } from 'vue';
+import { defineComponent, onBeforeMount, shallowRef } from 'vue';
 
 export default defineComponent({
   name: 'Icon',
@@ -16,7 +16,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const iconContent = ref('' as string);
+    const iconContent = shallowRef('' as string);
 
     onBeforeMount(async () => {
       const iconModule = await import(`../assets/icons/${props.icon}.svg`);
