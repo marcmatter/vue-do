@@ -1,11 +1,11 @@
 <template>
-  <div class="h-screen w-full flex justify-center items-center flex flex-col">
-    <div class="p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-50 dark:bg-opacity-5">
+  <div class="h-full w-full flex justify-center items-center flex flex-col">
+    <div class="p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-50 dark:bg-opacity-5 mb-20">
       <h1 class="vuedo-icon text-7xl font-bold mx-16 mt-4 mb-8 bg-clip-text">
         <span class="text-secondary">Vue</span>
         <span class="text-primary">Do</span>
       </h1>
-      <TextSeparator class="my-4">LOG IN TO SERVER</TextSeparator>
+      <TextSeparator class="my-4 uppercase">Log in to Server</TextSeparator>
 
       <InputField class="my-4" icon="user-circle" type="text" placeholder="Username" />
       <InputField class="my-4" icon="key" type="password" placeholder="Password" icon-class="p-0.5" />
@@ -17,7 +17,7 @@
         Log In
       </DecoratedButton>
 
-      <TextSeparator class="mt-8 my-4">ALTERNATIVELY</TextSeparator>
+      <TextSeparator class="mt-8 my-4 uppercase">Alternatively</TextSeparator>
 
       <DecoratedButton
         class="my-4 mx-auto !text-white !bg-secondary !border-secondary hover:!border-sky-700 hover:dark:!border-blue-200"
