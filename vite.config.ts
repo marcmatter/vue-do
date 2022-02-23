@@ -7,9 +7,13 @@ import svgPlugin from 'vite-svg-loader';
 export default defineConfig({
   plugins: [
     vue(),
-    ...(process.env.NODE_ENV === 'production' ? [eslintPlugin({
-      cache: false,
-    })] : []),
+    ...(process.env.NODE_ENV === 'production'
+      ? [
+          eslintPlugin({
+            cache: false,
+          }),
+        ]
+      : []),
     svgPlugin(),
   ],
 });
