@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { beforeEachHook } from './beforeEach';
 
-const routes: any = [
-  {
-    pageTitle: 'Login Page',
-    path: '/login',
-    component: () => import(/* webpackChunkName: "views_Login" */ '../views/Login.vue'),
-  },
-]
-
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: [
+
+    {
+      name: 'Login',
+      path: '/login',
+      component: () => import(/* webpackChunkName: "views_Login" */ '../views/Login.vue'),
+    },
+  ],
 });
+
+router.beforeEach(beforeEachHook);
+
+export default router;

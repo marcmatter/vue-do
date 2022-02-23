@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen w-full" >
+  <div class="min-h-screen w-full">
     <TopRainbowBar :is-loading="false" />
     <main class="flex flex-col min-h-screen justify-center items-center">
-      <router-view class="grow-2"/>
+      <router-view class="grow-2" />
     </main>
     <AppFooter />
   </div>
@@ -19,7 +19,7 @@ export default defineComponent({
 
   components: {
     TopRainbowBar,
-    AppFooter
+    AppFooter,
   },
 
   setup() {},

@@ -1,15 +1,13 @@
 <template>
-
+  <div></div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
-export default defineComponent {
-  name: "Home"
-}
+export default defineComponent({
+  name: 'Home',
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

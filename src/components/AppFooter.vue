@@ -14,45 +14,43 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Icon from "./Icon.vue";
+import Icon from './Icon.vue';
 
 export default defineComponent({
-  name: "AppFooter",
+  name: 'AppFooter',
   components: {
-    Icon
+    Icon,
   },
   data() {
     return {
       socialMediaLinks: [
         {
-          name: "github",
-          link: "https://github.com/marcmatter/vue-do",
+          name: 'github',
+          link: 'https://github.com/marcmatter/vue-do',
         },
         {
-          name: "twitter",
-          link: "https://example.com",
+          name: 'twitter',
+          link: 'https://example.com',
         },
         {
-          name: "facebook",
-          link: "https://example.com",
+          name: 'facebook',
+          link: 'https://example.com',
         },
-      ]
-    }
+      ],
+    };
   },
   computed: {
     copyRightYear() {
       const startYear = 2022;
       const currentYear = new Date().getFullYear();
       if (startYear === currentYear) {
-        return startYear
+        return startYear;
       }
 
-      return `${startYear} - ${currentYear}`
-    }
-  }
+      return `${startYear} - ${currentYear}`;
+    },
+  },
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
