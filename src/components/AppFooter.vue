@@ -1,8 +1,10 @@
 <template>
-  <footer class="h-15 bg-white text-zinc-700 dark:text-white dark:bg-zinc-900 w-screen-- flex justify-between gap-2 overflow-hidden p-3 sticky bottom-0">
+  <footer
+    class="h-16 bg-white text-zinc-700 dark:text-white dark:bg-zinc-900 flex w-full justify-between gap-2 overflow-hidden p-3 md:absolute bottom-0"
+  >
     <div class="text-sm">
       <p>Released under the <span class="font-bold">MPL-2.0 Licence.</span></p>
-      <p class="font-thin">Copyright © {{ copyRightYear }} Marc Matter & Neo Samardzic</p>
+      <p class="font-thin">Copyright © {{ copyRightYear }} Marc & Neo</p>
     </div>
     <div class="flex">
       <a v-for="socialLink in socialMediaLinks" :key="socialLink.name" :href="socialLink.link" target="_blank" class="hover:text-secondary hover:scale-125 transition">

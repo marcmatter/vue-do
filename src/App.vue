@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen w-full">
     <TopRainbowBar :is-loading="false" />
-    <main class="flex flex-col justify-center items-center">
+    <main class="flex flex-col justify-center items-center h-screen md:pb-16">
       <router-view class="grow-2" />
     </main>
-    <AppFooter />
+    <AppFooter class="-mt-16 md:mt-0" />
   </div>
 </template>
 

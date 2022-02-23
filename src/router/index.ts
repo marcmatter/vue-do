@@ -4,7 +4,10 @@ import { beforeEachHook } from './beforeEach';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-
+    {
+      path: '/',
+      redirect: '/login',
+    },
     {
       name: 'Login',
       path: '/login',
