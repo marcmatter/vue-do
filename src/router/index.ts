@@ -17,7 +17,7 @@ const router = createRouter({
       name: 'Home',
       path: '/home',
       component: () => import(/* webpackChunkName: "views_Home" */ '../views/Home.vue'),
-    }
+    },
   ],
 });
 

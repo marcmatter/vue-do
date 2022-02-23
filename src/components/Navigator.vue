@@ -1,8 +1,8 @@
 <template>
   <section
-    class="md:w-screen w-1/3 h-5/6 bg-zinc-50 dark:bg-opacity-5 dark:bg-zinc-50 text-zinc-700 dark:text-zinc-50 rounded-xl p-2 shadow max-w-xs"
+    class="w-screen pt-5 md:pt-2 md:w-1/3 h-full md:h-5/6 bg-zinc-50 dark:bg-opacity-5 dark:bg-zinc-50 text-zinc-700 dark:text-zinc-50 rounded-xl p-2 shadow md:max-w-xs"
   >
-    <div class="flex justify-between text-md p-2 pb-1">
+    <div class="flex justify-between text-3xl md:text-base p-2 pb-1">
       <span>Max Mustermann</span>
       <span>
         <button>
@@ -18,13 +18,13 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import Icon from './Icon.vue';
-import NavigationSection from "./NavigationSection.vue";
+import NavigationSection from './NavigationSection.vue';
 
 export default defineComponent({
   name: 'Navigator',
   components: {
     Icon,
-    NavigationSection
+    NavigationSection,
   },
   setup() {
     const endpoints = reactive({

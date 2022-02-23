@@ -1,15 +1,15 @@
 <template>
   <div class="mt-3">
-    <div class="text-zinc-400 text-xs px-2 mb-1">
-      <p class="uppercase pl-1 pb-0.5">{{ title }}</p>
+    <div class="text-zinc-400 text-lg md:text-xs px-2 mb-1">
+      <p class="uppercase pl-1 pb-1 md:pb-0.5">{{ title }}</p>
       <hr class="border-zinc-300 dark:border-zinc-500" />
     </div>
     <ul>
       <li v-for="endpoint in endpoints" :key="endpoint.name">
         <a
-          class="flex items-center py-1 px-2 text-sm text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-700 rounded transition"
+          class="flex items-center py-5 md:py-1 py-5 md:px-2 text-2xl md:text-sm text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-700 rounded transition"
         >
-          <Icon :icon="endpoint.icon" class="h-4" />
+          <Icon :icon="endpoint.icon" class="h-8 md:h-4" />
           {{ endpoint.name }}
         </a>
       </li>
