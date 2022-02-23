@@ -1,6 +1,6 @@
 <template>
   <section
-    class="w-1/3 h-5/6 bg-zinc-50 dark:bg-opacity-5 dark:bg-zinc-50 text-zinc-700 dark:text-zinc-50 rounded-xl p-2 shadow max-w-xs"
+    class="md:w-screen w-1/3 h-5/6 bg-zinc-50 dark:bg-opacity-5 dark:bg-zinc-50 text-zinc-700 dark:text-zinc-50 rounded-xl p-2 shadow max-w-xs"
   >
     <div class="flex justify-between text-md p-2 pb-1">
       <span>Max Mustermann</span>
