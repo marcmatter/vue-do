@@ -5,8 +5,7 @@ export default createRouter({
   routes: [
     {
       path: '/login',
-      component: () =>
-        import(/* webpackChunkName: "views_Login" */ '../views/Login.vue'),
+      component: () => import(/* webpackChunkName: "views_Login" */ '../views/Login.vue'),
     },
   ],
 });

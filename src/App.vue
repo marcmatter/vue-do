@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import './styles/main.scss';
 import TopRainbowBar from './components/TopRainbowBar.vue';
 

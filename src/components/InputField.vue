@@ -58,7 +58,7 @@ export default defineComponent({
     onInput: {
       type: Function,
       required: false,
-    }
+    },
   },
 });
 </script>

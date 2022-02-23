@@ -38,7 +38,6 @@ import { useTodoStore } from '../stores/todo';
 import { Dayjs } from '../utils';
 import InputField from '../components/InputField.vue';
 import TextSeparator from '../components/TextSeparator.vue';
-import Icon from '../components/Icon.vue';
 import DecoratedButton from '../components/DecoratedButton.vue';
 
 export default defineComponent({
@@ -46,7 +45,6 @@ export default defineComponent({
 
   components: {
     DecoratedButton,
-    Icon,
     InputField,
     TextSeparator,
   },

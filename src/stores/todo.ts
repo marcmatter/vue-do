@@ -37,9 +37,7 @@ export const useTodoStore = defineStore('todoStore', {
       this.entries.splice(newPosition, 0, entry);
     },
     moveCategory(categoryId: number, newPosition: number) {
-      const categoryPosition = this.categories.findIndex(
-        (el) => el.id === categoryId
-      );
+      const categoryPosition = this.categories.findIndex((el) => el.id === categoryId);
 
       const [category] = this.categories.splice(categoryPosition, 1);
       this.categories.splice(newPosition, 0, category);
@@ -50,9 +48,7 @@ export const useTodoStore = defineStore('todoStore', {
       this.entries[entryIndex] = newEntry;
     },
     replaceCategory(categoryId: number, newCategory: TodoCategory) {
-      const categoryIndex = this.categories.findIndex(
-        (el) => el.id === categoryId
-      );
+      const categoryIndex = this.categories.findIndex((el) => el.id === categoryId);
 
       this.categories[categoryIndex] = newCategory;
     },
@@ -62,9 +58,7 @@ export const useTodoStore = defineStore('todoStore', {
       this.entries[entryIndex] = { ...this.entries[entryIndex], ...fields };
     },
     patchCategory(categoryId: number, fields: Partial<TodoCategory>) {
-      const categoryIndex = this.categories.findIndex(
-        (el) => el.id === categoryId
-      );
+      const categoryIndex = this.categories.findIndex((el) => el.id === categoryId);
 
       this.categories[categoryIndex] = {
         ...this.categories[categoryIndex],
@@ -77,9 +71,7 @@ export const useTodoStore = defineStore('todoStore', {
       this.entries.splice(entryIndex, 1);
     },
     deleteCategory(categoryId: number) {
-      const categoryIndex = this.categories.findIndex(
-        (el) => el.id === categoryId
-      );
+      const categoryIndex = this.categories.findIndex((el) => el.id === categoryId);
 
       this.categories.splice(categoryIndex, 1);
     },
@@ -146,7 +138,4 @@ export const serializeTodoStore: SerializeStore<TodoStore> = {
   },
 };
 
-export const todoStoreLocalStorageAdapter = new LocalStorageAdapter(
-  'todo:todoStore',
-  serializeTodoStore
-);
+export const todoStoreLocalStorageAdapter = new LocalStorageAdapter('todo:todoStore', serializeTodoStore);

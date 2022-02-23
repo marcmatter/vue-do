@@ -39,8 +39,14 @@ export default defineComponent({
   background-repeat: repeat-x;
 
   transition: opacity 0.5s ease;*/
-  background-image: repeating-linear-gradient(-30deg, theme('colors.primary') 0px, theme('colors.primary') 15px, theme('colors.secondary') 15px, theme('colors.secondary') 30px);
-  background-repeat: true;
+  background-image: repeating-linear-gradient(
+    -30deg,
+    theme('colors.primary') 0px,
+    theme('colors.primary') 15px,
+    theme('colors.secondary') 15px,
+    theme('colors.secondary') 30px
+  );
+  background-repeat: repeat;
   background-size: 200% 100%;
 
   &.is-loading {
