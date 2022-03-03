@@ -10,9 +10,6 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/home',
-      meta: {
-        loggedInOnly: true,
-      },
     },
     {
       path: '/home',

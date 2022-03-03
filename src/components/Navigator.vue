@@ -1,12 +1,13 @@
 <template>
   <section
-    class="h-full w-screen select-none rounded-xl bg-zinc-50 p-2 pt-7 text-zinc-700 shadow dark:bg-zinc-50 dark:bg-opacity-5 dark:text-zinc-50 md:h-5/6 md:w-1/3 md:max-w-xs md:pt-2"
+    class="absolute z-10 m-0 h-screen w-screen select-none bg-zinc-50 p-3 text-zinc-700 shadow dark:bg-grey dark:text-zinc-50 md:relative md:block md:h-5/6 md:w-1/3 md:max-w-xs md:rounded-xl"
+    :class="{ hidden: !isNavigationOpen }"
   >
-    <div class="mb-5 ml-1 md:hidden">
-      <Icon icon="close-rectangle-f" class="h-10 w-10" />
-    </div>
+    <button class="mb-5 ml-1 md:hidden" @click="$emit('toggleNavigation')">
+      <Icon icon="close-circle-f" class="h-10 w-10 text-zinc-400" />
+    </button>
     <div class="flex justify-between p-2 pb-1 text-3xl md:text-base">
-      <span>Max Mustermann</span>
+      <span>{{ username || 'Local Storage' }}</span>
       <span @click="logOut">
         <button>
           <Icon class="h-10 w-10 md:h-5 md:w-5" icon="log-out" />
@@ -30,6 +31,9 @@ export default defineComponent({
   components: {
     Icon,
     NavigationSection,
+  },
+  props: {
+    isNavigationOpen: Boolean,
   },
   setup() {
     const configStore = useConfigStore();

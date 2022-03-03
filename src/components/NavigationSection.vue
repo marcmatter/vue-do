@@ -8,7 +8,7 @@
       <li v-for="endpoint in endpoints" :key="endpoint.name">
         <a
           href="javascript:void(0)"
-          class="flex items-center rounded py-5 py-5 px-2 text-2xl text-zinc-500 transition hover:bg-zinc-200 hover:text-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-zinc-50 md:py-1 md:text-sm"
+          class="flex items-center rounded py-5 px-3 text-2xl text-zinc-500 transition hover:bg-zinc-200 hover:text-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-zinc-50 md:py-1 md:text-sm"
         >
           <Icon :icon="endpoint.icon" class="mr-4 h-8 md:mr-0 md:h-4" />
           {{ endpoint.name }}

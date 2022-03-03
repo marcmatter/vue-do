@@ -7,7 +7,8 @@ export const beforeEachHook: NavigationGuardWithThis<any> = (to) => {
 
     if (to.meta.loggedInOnly && !configStore.isLoggedIn) {
       return { path: '/login' };
-    } else if (to.meta.loggedOutOnly && configStore.isLoggedIn) {
+    }
+    if (to.meta.loggedOutOnly && configStore.isLoggedIn) {
       return { path: '/home' };
     }
 
