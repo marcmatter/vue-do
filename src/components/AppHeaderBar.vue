@@ -8,17 +8,11 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'AppHeaderBar',
-
-  props: {
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
+<script lang="ts" setup>
+defineProps({
+  isLoading: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

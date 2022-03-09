@@ -2,12 +2,6 @@
   <div></div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ToDoToolsFilter',
-});
-</script>
+<script lang="ts" setup></script>
 
 <style scoped></style>

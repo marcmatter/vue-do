@@ -19,45 +19,35 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-import Icon from './BaseIcon.vue';
-
-export default defineComponent({
-  name: 'BaseInput',
-  components: {
-    Icon,
+<script lang="ts" setup>
+defineProps({
+  iconClass: {
+    type: String,
+    required: false,
   },
-  props: {
-    iconClass: {
-      type: String,
-      required: false,
-    },
-    inputClass: {
-      type: String,
-      required: false,
-    },
-    icon: {
-      type: String,
-      required: false,
-    },
-    type: {
-      type: String,
-      required: false,
-    },
-    placeholder: {
-      type: String,
-      required: false,
-    },
-    value: {
-      type: String,
-      required: false,
-    },
-    onInput: {
-      type: Function,
-      required: false,
-    },
+  inputClass: {
+    type: String,
+    required: false,
+  },
+  icon: {
+    type: String,
+    required: false,
+  },
+  type: {
+    type: String,
+    required: false,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  value: {
+    type: String,
+    required: false,
+  },
+  onInput: {
+    type: Function,
+    required: false,
   },
 });
 </script>

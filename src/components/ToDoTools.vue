@@ -10,21 +10,6 @@
   </section>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-import InputField from './BaseInput.vue';
-import Icon from './BaseIcon.vue';
-import BaseButton from './BaseButton.vue';
-
-export default defineComponent({
-  name: 'ToDoTools',
-  components: {
-    InputField,
-    Icon,
-    BaseButton,
-  },
-});
-</script>
+<script lang="ts" setup></script>
 
 <style scoped></style>

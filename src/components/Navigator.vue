@@ -1,29 +1,24 @@
 <template>
   <aside class="navigatorContainer" :class="{ hidden: !isNavigationOpen }">
     <button class="mb-3 h-10 w-10 md:hidden" @click="$emit('toggleNavigation')">
-      <Icon icon="close-circle-f" class="h-10 w-10 text-2xl text-zinc-400" />
+      <BaseIcon icon="close-circle-f" class="h-10 w-10 text-2xl text-zinc-400" />
     </button>
     <div class="userProfile">
       <span>{{ username || 'Local Storage' }}</span>
       <button @click="logOut">
-        <Icon class="h-10 w-10 md:h-5 md:w-5" icon="log-out" />
+        <BaseIcon class="h-10 w-10 md:h-5 md:w-5" icon="log-out" />
       </button>
     </div>
     <nav>
-      <NavigationSection title="My Tasks" :endpoints="endpoints.tasks" />
-      <NavigationSection title="Categories" :endpoints="endpoints.categories" />
+      <NavigatorSection title="My Tasks" :endpoints="endpoints.tasks" />
+      <NavigatorSection title="Categories" :endpoints="endpoints.categories" />
     </nav>
   </aside>
 </template>
 
 <script lang="ts" setup>
-import { PropType, reactive } from 'vue';
-
 import { useConfigStore } from '../stores/config';
 import router from '../router';
-
-import Icon from './BaseIcon.vue';
-import NavigationSection from './NavigatorSection.vue';
 
 defineProps({
   isNavigationOpen: Boolean,

@@ -7,7 +7,7 @@
     <ul>
       <li v-for="endpoint in endpoints" :key="endpoint.name">
         <a href="javascript:void(0)" class="navigationButton" :class="{ active: endpoint.active }">
-          <Icon :icon="endpoint.icon" class="mr-4 h-8 md:mr-0 md:h-4" />
+          <BaseIcon :icon="endpoint.icon" class="mr-4 h-8 md:mr-0 md:h-4" />
           {{ endpoint.name }}
         </a>
       </li>
@@ -15,25 +15,15 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-import Icon from './BaseIcon.vue';
-
-export default defineComponent({
-  name: 'NavigationSection',
-  components: {
-    Icon,
+<script lang="ts" setup>
+defineProps({
+  title: {
+    type: String,
+    required: true,
   },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    endpoints: {
-      type: Array,
-      required: true,
-    },
+  endpoints: {
+    type: Array,
+    required: true,
   },
 });
 </script>

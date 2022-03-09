@@ -20,45 +20,30 @@
   </footer>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-import Icon from './BaseIcon.vue';
-
-export default defineComponent({
-  name: 'AppFooter',
-  components: {
-    Icon,
+<script lang="ts" setup>
+const socialMediaLinks = [
+  {
+    name: 'github',
+    link: 'https://github.com/marcmatter/vue-do',
   },
-  data() {
-    return {
-      socialMediaLinks: [
-        {
-          name: 'github',
-          link: 'https://github.com/marcmatter/vue-do',
-        },
-        {
-          name: 'twitter',
-          link: 'https://example.com',
-        },
-        {
-          name: 'facebook',
-          link: 'https://example.com',
-        },
-      ],
-    };
+  {
+    name: 'twitter',
+    link: 'https://example.com',
   },
-  computed: {
-    copyRightYear() {
-      const startYear = 2022;
-      const currentYear = new Date().getFullYear();
-      if (startYear === currentYear) {
-        return startYear;
-      }
+  {
+    name: 'facebook',
+    link: 'https://example.com',
+  },
+];
 
-      return `${startYear} - ${currentYear}`;
-    },
-  },
+const copyRightYear = computed(() => {
+  const startYear = 2022;
+  const currentYear = new Date().getFullYear();
+  if (startYear === currentYear) {
+    return startYear;
+  }
+
+  return `${startYear} - ${currentYear}`;
 });
 </script>
 

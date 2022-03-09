@@ -18,30 +18,9 @@
   </Draggable>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
+<script lang="ts" setup>
 import Draggable from 'vuedraggable';
-import ToDoTools from './ToDoTools.vue';
-import ToDoListItem from './ToDoListItem.vue';
 import { useTodoStore } from '../stores/todo';
-import { Dayjs } from '../utils';
 
-export default defineComponent({
-  name: 'ToDo',
-  components: {
-    Draggable,
-    ToDoListItem,
-    ToDoTools,
-  },
-
-  setup() {
-    const todoStore = useTodoStore();
-
-    return {
-      Dayjs,
-      todoStore,
-    };
-  },
-});
+const todoStore = useTodoStore();
 </script>

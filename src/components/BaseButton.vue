@@ -4,7 +4,7 @@
       class="flex h-full w-full items-center justify-center rounded-lg py-2 text-center hover:bg-zinc-800/10 dark:hover:bg-zinc-100/10"
       :class="`${icon ? 'pl-5 pr-7' : 'px-7'}`"
     >
-      <Icon v-if="icon" :icon="icon" :class="`mr-2 ${iconClass || ''}`" />
+      <BaseIcon v-if="icon" :icon="icon" :class="`mr-2 ${iconClass || ''}`" />
       <span :class="`block h-6 font-medium ${textClass || ''}`">
         <slot />
       </span>
@@ -12,45 +12,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-
-import Icon from './BaseIcon.vue';
-
+<script lang="ts" setup>
 const ButtonStyles = {
   default: 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700 dark:text-white',
   primary: 'bg-primary text-white',
   secondary: 'bg-secondary text-white',
 };
 
-export default defineComponent({
-  name: 'BaseButton',
-  components: {
-    Icon,
+defineProps({
+  color: {
+    type: String as PropType<keyof typeof ButtonStyles>,
+    required: false,
+    default: 'default',
   },
-  props: {
-    color: {
-      type: String as PropType<keyof typeof ButtonStyles>,
-      required: false,
-      default: 'default',
-    },
-    icon: {
-      type: String,
-      required: false,
-    },
-    iconClass: {
-      type: String,
-      required: false,
-    },
-    textClass: {
-      type: String,
-      required: false,
-    },
+  icon: {
+    type: String,
+    required: false,
   },
-  setup() {
-    return {
-      ButtonStyles,
-    };
+  iconClass: {
+    type: String,
+    required: false,
+  },
+  textClass: {
+    type: String,
+    required: false,
   },
 });
 </script>
