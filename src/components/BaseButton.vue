@@ -1,11 +1,7 @@
 <template>
-  <div
-    :class="`${
-      color ? `bg-${color} text-white` : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-white'
-    } w-fit rounded-lg`"
-  >
+  <div :class="`${ButtonStyles[color]} w-fit rounded-lg`">
     <button
-      class="flex h-full w-full items-center justify-center rounded-lg border border-zinc-800/30 py-2 text-center hover:border-zinc-800/40 hover:bg-zinc-800/20"
+      class="flex h-full w-full items-center justify-center rounded-lg py-2 text-center hover:bg-zinc-800/10 dark:hover:bg-zinc-100/10"
       :class="`${icon ? 'pl-5 pr-7' : 'px-7'}`"
     >
       <Icon v-if="icon" :icon="icon" :class="`mr-2 ${iconClass || ''}`" />
@@ -17,9 +13,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 import Icon from './BaseIcon.vue';
+
+const ButtonStyles = {
+  default: 'bg-zinc-200 text-zinc-600 dark:bg-zinc-700 dark:text-white',
+  primary: 'bg-primary text-white',
+  secondary: 'bg-secondary text-white',
+};
 
 export default defineComponent({
   name: 'BaseButton',
@@ -28,8 +30,9 @@ export default defineComponent({
   },
   props: {
     color: {
-      type: String,
+      type: String as PropType<keyof typeof ButtonStyles>,
       required: false,
+      default: 'default',
     },
     icon: {
       type: String,
@@ -43,6 +46,11 @@ export default defineComponent({
       type: String,
       required: false,
     },
+  },
+  setup() {
+    return {
+      ButtonStyles,
+    };
   },
 });
 </script>

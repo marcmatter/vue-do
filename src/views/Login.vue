@@ -14,7 +14,7 @@
 
       <BaseSeparator class="my-4 mt-8 uppercase">Alternatively</BaseSeparator>
 
-      <BaseButton class="my-4 mx-auto" icon="computer-alt" @click="loginLocally">
+      <BaseButton class="my-4 mx-auto" color="secondary" icon="computer-alt" @click="loginLocally">
         Store data locally
       </BaseButton>
       <span class="mx-auto block max-w-xs text-center text-sm leading-tight text-zinc-400">
