@@ -1,7 +1,8 @@
 <template>
   <div class="todo-item">
     <span class="drag-handle">
-      <DragHandleIcon
+      <BaseIcon
+        icon="move"
         :class="{
           hidden: !hasDragHandle,
         }"
@@ -12,7 +13,7 @@
         <input
           class="title"
           :class="{
-            done: todoItem.isDone,
+            done: todoItem.state === TodoEntryState.Closed,
           }"
           :value="todoItem.name"
           @keypress.enter="changeName"
@@ -25,15 +26,11 @@
           :class="{
             expired: isPastDue,
             warning: isOnDue,
-            done: todoItem.isDone,
+            done: todoItem.state === TodoEntryState.Closed,
           }"
         >
           Due
-          <input
-            :value="todoItem.dueDate.format('DD.MM.YYYY')"
-            maxlength="10"
-            type="text"
-          />
+          <input :value="todoItem.dueDate.format('DD.MM.YYYY')" maxlength="10" type="text" />
         </p>
         <p v-else class="due-date">
           <input
@@ -51,11 +48,15 @@
     <div
       class="toggle"
       :class="{
-        active: todoItem.isDone,
+        active: todoItem.state === TodoEntryState.Closed,
       }"
-      @click="onPatch({ isDone: !todoItem.isDone })"
+      @click="
+        onPatch(
+          todoItem.state === TodoEntryState.Open ? { state: TodoEntryState.Closed } : { state: TodoEntryState.Open }
+        )
+      "
     >
-      <CheckmarkIcon />
+      <BaseIcon icon="check" />
     </div>
   </div>
 </template>
@@ -63,16 +64,14 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
 import { Dayjs } from '../utils';
-import DragHandleIcon from '../components/DragHandleIcon.vue';
-import CheckmarkIcon from '../components/CheckmarkIcon.vue';
-import { TodoEntry } from '../types/Todo';
+import BaseIcon from '../components/BaseIcon.vue';
+import { TodoEntry, TodoEntryState } from '../types/Todo';
 
 export default defineComponent({
   name: 'ToDoItem',
 
   components: {
-    CheckmarkIcon,
-    DragHandleIcon,
+    BaseIcon,
   },
 
   props: {
@@ -96,12 +95,8 @@ export default defineComponent({
   },
 
   setup(props) {
-    const isPastDue = computed(() =>
-      props.todoItem.dueDate?.isBefore(Dayjs(), 'day')
-    );
-    const isOnDue = computed(() =>
-      props.todoItem.dueDate?.isSame(Dayjs(), 'day')
-    );
+    const isPastDue = computed(() => props.todoItem.dueDate?.isBefore(Dayjs(), 'day'));
+    const isOnDue = computed(() => props.todoItem.dueDate?.isSame(Dayjs(), 'day'));
 
     function changeName(event: InputEvent, shouldBlur = false) {
       if (!event || !event.target) return false;
@@ -125,6 +120,8 @@ export default defineComponent({
 
       isPastDue,
       isOnDue,
+
+      TodoEntryState,
     };
   },
 });
@@ -132,17 +129,17 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .todo-item {
-  @apply border-b border-zinc-600 w-full flex;
+  @apply flex w-full border-b border-zinc-600;
 
   .drag-handle {
-    @apply w-10 h-10 p-2 py-[1.125rem] text-zinc-400 mr-2;
+    @apply mr-2 h-10 w-10 p-2 py-[1.125rem] text-zinc-400;
   }
 
   .content {
-    @apply py-2 w-full mr-2;
+    @apply mr-2 w-full py-2;
 
     .title {
-      @apply bg-transparent transition w-full;
+      @apply w-full bg-transparent transition;
 
       &.done {
         @apply text-zinc-500;
@@ -150,7 +147,7 @@ export default defineComponent({
     }
 
     .due-date {
-      @apply text-zinc-400 text-sm transition;
+      @apply text-sm text-zinc-400 transition;
 
       input {
         @apply bg-transparent;
@@ -171,10 +168,10 @@ export default defineComponent({
   }
 
   .toggle {
-    @apply m-2 my-[1.125rem] rounded-full border border-zinc-500 w-6 h-6 shrink-0 flex transition;
+    @apply m-2 my-[1.125rem] flex h-6 w-6 shrink-0 rounded-full border border-zinc-500 transition;
 
     svg {
-      @apply text-zinc-800 w-3 m-auto opacity-0;
+      @apply m-auto w-3 text-zinc-800 opacity-0;
     }
 
     &.active {

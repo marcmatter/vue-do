@@ -1,6 +1,6 @@
 <template>
-  <div class="flex min-h-screen w-full flex-col">
-    <TopRainbowBar :is-loading="false" />
+  <div class="wrapper flex w-full flex-col">
+    <AppHeaderBar :is-loading="false" />
     <main class="flex flex-1 flex-col">
       <router-view />
     </main>
@@ -14,7 +14,7 @@ import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import { configStoreAdapter, useConfigStore } from './stores/config';
 import './styles/main.scss';
 
-import TopRainbowBar from './components/AppHeaderBar.vue';
+import AppHeaderBar from './components/AppHeaderBar.vue';
 import AppFooter from './components/AppFooter.vue';
 import router from './router';
 
@@ -22,7 +22,7 @@ export default defineComponent({
   name: 'App',
 
   components: {
-    TopRainbowBar,
+    AppHeaderBar,
     AppFooter,
   },
 
@@ -52,4 +52,9 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.wrapper {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+</style>

@@ -22,7 +22,7 @@ export default defineComponent({
   },
   data() {
     return {
-      isNavigationOpen: false,
+      isNavigationOpen: false
     };
   },
   methods: {

@@ -6,8 +6,16 @@
 
 html {
   @apply bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100;
+
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 #app {
   @apply flex flex-col justify-center items-center;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
