@@ -16,8 +16,8 @@
   </aside>
 </template>
 
-<script>
-import { defineComponent, reactive } from 'vue';
+<script lang="ts" setup>
+import { PropType, reactive } from 'vue';
 
 import { useConfigStore } from '../stores/config';
 import router from '../router';
@@ -25,56 +25,44 @@ import router from '../router';
 import Icon from './BaseIcon.vue';
 import NavigationSection from './NavigatorSection.vue';
 
-export default defineComponent({
-  name: 'Navigator',
-  components: {
-    Icon,
-    NavigationSection,
-  },
-  props: {
-    isNavigationOpen: Boolean,
-  },
-  setup() {
-    const configStore = useConfigStore();
+defineProps({
+  isNavigationOpen: Boolean,
+});
 
-    const logOut = () => {
-      configStore.logOut();
-      router.push('/login');
-    };
+defineEmits(['toggleNavigation']);
 
-    const username = 'Max Musterman';
+const configStore = useConfigStore();
 
-    const endpoints = reactive({
-      tasks: [
-        {
-          name: 'All Entries',
-          icon: 'inboxes-f',
-          active: true,
-        },
-        {
-          name: 'Open',
-          icon: 'cogs-f',
-        },
-        {
-          name: 'Closed',
-          icon: 'task-list',
-        },
-      ],
-      categories: [
-        {
-          name: 'All Entries',
-          icon: 'folder-f',
-          active: true,
-        },
-      ],
-    });
+const logOut = () => {
+  configStore.logOut();
+  router.push('/login');
+};
 
-    return {
-      endpoints,
-      logOut,
-      username,
-    };
-  },
+const username = 'Max Musterman';
+
+const endpoints = reactive({
+  tasks: [
+    {
+      name: 'All Entries',
+      icon: 'inboxes-f',
+      active: true,
+    },
+    {
+      name: 'Open',
+      icon: 'cogs-f',
+    },
+    {
+      name: 'Closed',
+      icon: 'task-list',
+    },
+  ],
+  categories: [
+    {
+      name: 'All Entries',
+      icon: 'folder-f',
+      active: true,
+    },
+  ],
 });
 </script>
 

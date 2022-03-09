@@ -24,41 +24,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
+<script lang="ts" setup>
 import { useConfigStore } from '../stores/config';
-import { Dayjs } from '../utils';
 import router from '../router';
 
-import BaseInput from '../components/BaseInput.vue';
-import BaseSeparator from '../components/BaseSeparator.vue';
-import BaseButton from '../components/BaseButton.vue';
+const configStore = useConfigStore();
 
-export default defineComponent({
-  name: 'LoginView',
-
-  components: {
-    BaseButton,
-    BaseInput,
-    BaseSeparator,
-  },
-
-  setup() {
-    const configStore = useConfigStore();
-
-    const loginLocally = () => {
-      configStore.useLocally();
-      router.push('/home');
-    };
-
-    return {
-      configStore,
-      Dayjs,
-      loginLocally,
-    };
-  },
-});
+const loginLocally = () => {
+  configStore.useLocally();
+  router.push('/home');
+};
 </script>
 
 <style lang="scss" scoped>

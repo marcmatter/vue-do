@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { TodoCategory, TodoEntry, TodoEntryToCategory } from '../types/Todo';
+import { TodoCategory, TodoEntry, TodoEntryState, TodoEntryToCategory } from '../types/Todo';
 
 export interface TodoStore {
   categories: TodoCategory[];
@@ -12,7 +12,28 @@ export const useTodoStore = defineStore('todoStore', {
   state: (): TodoStore => {
     return {
       categories: [],
-      entries: [],
+      entries: [
+        {
+          state: TodoEntryState.Open,
+          name: 'Deine Mutter ficken',
+          id: 0,
+        },
+        {
+          state: TodoEntryState.Closed,
+          name: 'Deine Schwester ficken',
+          id: 1,
+        },
+        {
+          state: TodoEntryState.Open,
+          name: 'Deine Tante ficken',
+          id: 2,
+        },
+        {
+          state: TodoEntryState.Open,
+          name: 'Deine Cousine ficken',
+          id: 3,
+        },
+      ],
 
       entriesToCategories: [],
     };

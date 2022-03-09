@@ -1,13 +1,12 @@
 <template>
   <div class="todo-item">
-    <span class="drag-handle">
-      <BaseIcon
-        icon="move"
-        :class="{
-          hidden: !hasDragHandle,
-        }"
-      />
-    </span>
+    <BaseIcon
+      class="drag-handle my-[0.625rem] mr-2 h-10 w-10 text-zinc-400"
+      icon="align-justify"
+      :class="{
+        hidden: !hasDragHandle,
+      }"
+    />
     <div class="content">
       <div class="row">
         <input
@@ -61,79 +60,54 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue';
+<script lang="ts" setup>
 import { Dayjs } from '../utils';
-import BaseIcon from '../components/BaseIcon.vue';
 import { TodoEntry, TodoEntryState } from '../types/Todo';
 
-export default defineComponent({
-  name: 'ToDoItem',
-
-  components: {
-    BaseIcon,
+const props = defineProps({
+  todoItem: {
+    required: true,
+    type: Object as PropType<TodoEntry>,
   },
-
-  props: {
-    todoItem: {
-      required: true,
-      type: Object as PropType<TodoEntry>,
-    },
-    hasDragHandle: {
-      required: false,
-      default: true,
-      type: Boolean,
-    },
-    onPatch: {
-      required: true,
-      type: Function as PropType<(fields: Partial<TodoEntry>) => any>,
-    },
-    onDelete: {
-      required: true,
-      type: Function as PropType<() => any>,
-    },
+  hasDragHandle: {
+    required: false,
+    default: true,
+    type: Boolean,
   },
-
-  setup(props) {
-    const isPastDue = computed(() => props.todoItem.dueDate?.isBefore(Dayjs(), 'day'));
-    const isOnDue = computed(() => props.todoItem.dueDate?.isSame(Dayjs(), 'day'));
-
-    function changeName(event: InputEvent, shouldBlur = false) {
-      if (!event || !event.target) return false;
-
-      const eventTarget = event.target as HTMLInputElement;
-      const inputValue = eventTarget.value;
-
-      if (!inputValue.length) {
-        props.onDelete();
-      } else {
-        props.onPatch({ name: inputValue });
-      }
-
-      if (shouldBlur) {
-        eventTarget.blur();
-      }
-    }
-
-    return {
-      changeName,
-
-      isPastDue,
-      isOnDue,
-
-      TodoEntryState,
-    };
+  onPatch: {
+    required: true,
+    type: Function as PropType<(fields: Partial<TodoEntry>) => any>,
+  },
+  onDelete: {
+    required: true,
+    type: Function as PropType<() => any>,
   },
 });
+
+const isPastDue = computed(() => props.todoItem.dueDate?.isBefore(Dayjs(), 'day'));
+const isOnDue = computed(() => props.todoItem.dueDate?.isSame(Dayjs(), 'day'));
+
+function changeName(event: InputEvent, shouldBlur = false) {
+  if (!event || !event.target) return false;
+
+  const eventTarget = event.target as HTMLInputElement;
+  const inputValue = eventTarget.value;
+
+  if (!inputValue.length) {
+    props.onDelete();
+  } else {
+    props.onPatch({ name: inputValue });
+  }
+
+  if (shouldBlur) {
+    eventTarget.blur();
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .todo-item {
   @apply flex w-full border-b border-zinc-600;
-
-  .drag-handle {
-    @apply mr-2 h-10 w-10 p-2 py-[1.125rem] text-zinc-400;
-  }
 
   .content {
     @apply mr-2 w-full py-2;

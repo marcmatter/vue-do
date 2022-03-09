@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['plugin:vue/vue3-essential', '@vue/typescript/recommended', 'plugin:prettier/recommended', 'prettier'],
+  extends: ['plugin:vue/vue3-essential', '@vue/typescript/recommended', 'plugin:prettier/recommended', 'prettier','./.eslintrc-auto-import.json',],
   parserOptions: {
     ecmaVersion: 2020,
   },
@@ -14,5 +14,5 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-function': 'off',
   },
-  ignorePatterns: ['/dist/**/*'],
+  ignorePatterns: ['/dist/**/*', './auto-imports.d.ts', './components.d.ts'],
 };

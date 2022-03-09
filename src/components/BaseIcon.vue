@@ -1,5 +1,5 @@
 <template>
-  <component :is="iconContent" />
+  <component v-if="iconContent" :is="iconContent" />
 </template>
 
 <script lang="ts">
@@ -15,7 +15,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const iconContent = shallowRef('' as string);
+    const iconContent = shallowRef(undefined);
 
     onBeforeMount(async () => {
       const iconModule = await import(`../assets/icons/${props.icon}.svg`);

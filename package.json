@@ -12,6 +12,8 @@
     "@types/node": "^17.0.18",
     "dayjs": "^1.10.7",
     "pinia": "^2.0.9",
+    "unplugin-auto-import": "^0.6.1",
+    "unplugin-vue-components": "^0.17.21",
     "vue": "^3.2.25",
     "vue-router": "^4.0.0-0",
     "vuedraggable": "^4.1.0",
