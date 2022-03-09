@@ -68,7 +68,7 @@ import CheckmarkIcon from '../components/CheckmarkIcon.vue';
 import { TodoEntry } from '../types/Todo';
 
 export default defineComponent({
-  name: 'TodoItem',
+  name: 'ToDoItem',
 
   components: {
     CheckmarkIcon,

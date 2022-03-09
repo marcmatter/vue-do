@@ -6,8 +6,7 @@
 import { defineComponent, onBeforeMount, shallowRef } from 'vue';
 
 export default defineComponent({
-  name: 'Icon',
-
+  name: 'BaseIcon',
   props: {
     icon: {
       type: String,

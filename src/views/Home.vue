@@ -1,5 +1,7 @@
 <template>
-  <div class="mx-auto h-full w-full max-w-screen-xl items-center justify-between pt-2.5 md:flex md:gap-5 md:px-10">
+  <div
+    class="mx-auto h-full w-full max-w-screen-xl flex-1 items-stretch justify-between pt-0 md:flex md:gap-5 md:py-5 md:px-10"
+  >
     <Navigator :isNavigationOpen="isNavigationOpen" @toggleNavigation="toggleNavigation" />
     <!-- To-Do List -->
     <ToDoList @toggleNavigation="toggleNavigation" />
@@ -8,8 +10,9 @@
 
 <script>
 import { defineComponent } from 'vue';
+
 import Navigator from '../components/Navigator.vue';
-import ToDoList from '../components/ToDoList.vue';
+import ToDoList from '../components/ToDo.vue';
 
 export default defineComponent({
   name: 'Home',

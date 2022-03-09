@@ -1,13 +1,8 @@
 <template>
-  <div class="min-h-screen w-full">
+  <div class="flex min-h-screen w-full flex-col">
     <TopRainbowBar :is-loading="false" />
-    <main
-      class="flex h-screen flex-col items-center justify-center"
-      :class="{
-        'md:pb-16': showFooter,
-      }"
-    >
-      <router-view class="grow-2" />
+    <main class="flex flex-1 flex-col">
+      <router-view />
     </main>
     <AppFooter v-if="showFooter" class="-mt-16 md:mt-0" />
   </div>
@@ -15,11 +10,13 @@
 
 <script lang="ts">
 import { computed, defineComponent, onBeforeMount, watch } from 'vue';
+
+import { configStoreAdapter, useConfigStore } from './stores/config';
 import './styles/main.scss';
-import TopRainbowBar from './components/TopRainbowBar.vue';
+
+import TopRainbowBar from './components/AppHeaderBar.vue';
 import AppFooter from './components/AppFooter.vue';
 import router from './router';
-import { configStoreAdapter, useConfigStore } from './stores/config';
 
 export default defineComponent({
   name: 'App',

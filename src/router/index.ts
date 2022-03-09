@@ -13,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/home',
-      component: () => Home,
+      component: Home,
       meta: {
         loggedInOnly: true,
         pageTitle: 'Home',
@@ -21,7 +21,7 @@ const router = createRouter({
     },
     {
       path: '/login',
-      component: () => Login,
+      component: Login,
       meta: {
         loggedOutOnly: true,
         pageTitle: 'Login',

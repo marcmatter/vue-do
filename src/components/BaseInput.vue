@@ -21,15 +21,14 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Icon from './Icon.vue';
+
+import Icon from './BaseIcon.vue';
 
 export default defineComponent({
-  name: 'InputField',
-
+  name: 'BaseInput',
   components: {
     Icon,
   },
-
   props: {
     iconClass: {
       type: String,
@@ -62,5 +61,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped></style>

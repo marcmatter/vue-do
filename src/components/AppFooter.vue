@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="bottom-0 flex h-16 w-full justify-between gap-2 overflow-hidden bg-white p-3 text-zinc-700 dark:bg-zinc-900 dark:text-white md:absolute"
+    class="min-h-16 mt-2 flex w-full justify-between gap-2 bg-white p-3 text-zinc-700 dark:bg-zinc-900 dark:text-white"
   >
     <div class="text-sm">
       <p>Released under the <span class="font-bold">MPL-2.0 Licence.</span></p>
@@ -22,7 +22,8 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Icon from './Icon.vue';
+
+import Icon from './BaseIcon.vue';
 
 export default defineComponent({
   name: 'AppFooter',

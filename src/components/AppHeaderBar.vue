@@ -1,5 +1,5 @@
 <template>
-  <div class="pz-3 top-rainbow-bar absolute top-0 left-0 h-3 w-full" />
+  <div class="pz-3 top-rainbow-bar h-3 w-full" />
   <div
     class="top-rainbow-bar is-loading absolute top-0 left-0 h-3 w-full"
     :class="{
@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'TopRainbowBar',
+  name: 'AppHeaderBar',
 
   props: {
     isLoading: {

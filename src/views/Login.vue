@@ -1,31 +1,22 @@
 <template>
-  <div class="flex flex h-full w-full flex-col items-center justify-center">
-    <div class="rounded-2xl p-8 md:bg-zinc-50 dark:md:bg-zinc-50 dark:md:bg-opacity-5">
+  <div class="my-5 flex min-h-full w-full flex-1 flex-col items-center justify-center">
+    <div class="rounded-2xl p-8 shadow md:bg-zinc-50 dark:md:bg-zinc-50 dark:md:bg-opacity-5">
       <h1 class="vuedo-icon mt-4 mb-8 flex justify-center bg-clip-text text-7xl font-bold md:mx-16">
         <span class="text-secondary">Vue</span>
         <span class="text-primary">Do</span>
       </h1>
-      <TextSeparator class="my-4 uppercase">Log in to Server</TextSeparator>
+      <BaseSeparator class="my-4 uppercase">Log in to Server</BaseSeparator>
 
-      <InputField class="my-4" icon="user-circle" type="text" placeholder="Username" />
-      <InputField class="my-4" icon="key" type="password" placeholder="Password" icon-class="p-0.5" />
+      <BaseInput class="my-4" icon="user-circle" type="text" placeholder="Username" />
+      <BaseInput class="my-4" icon="key" type="password" placeholder="Password" icon-class="p-0.5" />
 
-      <DecoratedButton
-        class="my-4 mx-auto !border-primary !bg-primary !text-white hover:!border-orange-800 hover:dark:!border-orange-300"
-        icon="log-in"
-      >
-        Log In
-      </DecoratedButton>
+      <BaseButton icon="log-in" color="primary" class="mx-auto my-4"> Log In </BaseButton>
 
-      <TextSeparator class="my-4 mt-8 uppercase">Alternatively</TextSeparator>
+      <BaseSeparator class="my-4 mt-8 uppercase">Alternatively</BaseSeparator>
 
-      <DecoratedButton
-        class="my-4 mx-auto !border-secondary !bg-secondary !text-white hover:!border-sky-700 hover:dark:!border-blue-200"
-        icon="computer-alt"
-        @click="loginLocally"
-      >
+      <BaseButton class="my-4 mx-auto" icon="computer-alt" @click="loginLocally">
         Store data locally
-      </DecoratedButton>
+      </BaseButton>
       <span class="mx-auto block max-w-xs text-center text-sm leading-tight text-zinc-400">
         VueDo can store your data in the browser, which means you can use it without a connection to our servers.
       </span>
@@ -35,20 +26,22 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { Dayjs } from '../utils';
-import InputField from '../components/InputField.vue';
-import TextSeparator from '../components/TextSeparator.vue';
-import DecoratedButton from '../components/DecoratedButton.vue';
+
 import { useConfigStore } from '../stores/config';
+import { Dayjs } from '../utils';
 import router from '../router';
+
+import BaseInput from '../components/BaseInput.vue';
+import BaseSeparator from '../components/BaseSeparator.vue';
+import BaseButton from '../components/BaseButton.vue';
 
 export default defineComponent({
   name: 'LoginView',
 
   components: {
-    DecoratedButton,
-    InputField,
-    TextSeparator,
+    BaseButton,
+    BaseInput,
+    BaseSeparator,
   },
 
   setup() {
