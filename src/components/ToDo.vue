@@ -11,8 +11,8 @@
       <ToDoListItem
         :key="element.id"
         :todo-item="element"
-        @patch="(item) => todoStore.patchEntry(element.id, item)"
-        @delete="() => todoStore.deleteEntry(element.id)"
+        :onPatch="(item) => todoStore.patchEntry(element.id, item)"
+        :onDelete="() => todoStore.deleteEntry(element.id)"
       />
     </template>
   </Draggable>

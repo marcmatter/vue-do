@@ -35,9 +35,9 @@
           <input
             value="No due date"
             maxlength="10"
-            @focus="(event) => (event.target.value = '')"
-            @blur="(event) => (event.target.value = 'No due date')"
-            @keypress.enter="(event) => event.target?.blur()"
+            @focus="(event: any) => (event.target.value = '')"
+            @blur="(event: any) => (event.target.value = 'No due date')"
+            @keypress.enter="(event: any) => event.target?.blur()"
             placeholder="dd.mm.yyyy"
             type="text"
           />
@@ -87,8 +87,8 @@ const props = defineProps({
 const isPastDue = computed(() => props.todoItem.dueDate?.isBefore(Dayjs(), 'day'));
 const isOnDue = computed(() => props.todoItem.dueDate?.isSame(Dayjs(), 'day'));
 
-function changeName(event: InputEvent, shouldBlur = false) {
-  if (!event || !event.target) return false;
+function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
+  if (!event || !event.target) return;
 
   const eventTarget = event.target as HTMLInputElement;
   const inputValue = eventTarget.value;

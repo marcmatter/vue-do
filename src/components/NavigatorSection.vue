@@ -22,7 +22,7 @@ defineProps({
     required: true,
   },
   endpoints: {
-    type: Array,
+    type: Array as PropType<any[]>,
     required: true,
   },
 });

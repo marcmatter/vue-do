@@ -10,12 +10,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["esnext", "dom"],
-    "types": [
-      "auto-imports.d.ts",
-      "components.d.ts",
-      "src/global.d.ts"
-    ]
+    "noImplicitAny": false,
+    "lib": ["esnext", "dom"]
   },
   "include": [
     "src/**/*.ts",

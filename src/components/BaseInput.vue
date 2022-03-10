@@ -46,7 +46,7 @@ defineProps({
     required: false,
   },
   onInput: {
-    type: Function,
+    type: Function as PropType<(payload: Event) => void>,
     required: false,
   },
 });
