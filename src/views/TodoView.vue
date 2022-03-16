@@ -6,13 +6,7 @@
       group="todoStore_entries"
       item-key="id"
       handle=".drag-handle"
-      @end="
-        (event) =>
-          todoStore.moveEntry(
-            todoStore.entries[event.oldIndex].id,
-            event.newIndex
-          )
-      "
+      @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
     >
       <template #item="{ element }">
         <TodoItem
@@ -54,17 +48,13 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .todo-title {
-  @apply text-8xl font-bold m-10 text-transparent bg-clip-text;
+  @apply m-10 bg-clip-text text-8xl font-bold text-transparent;
 
-  background-image: radial-gradient(
-      circle at 60% -20%,
-      rgba(252, 70, 107, 1) 0%,
-      rgba(252, 70, 107, 0) 90%
-    ),
+  background-image: radial-gradient(circle at 60% -20%, rgba(252, 70, 107, 1) 0%, rgba(252, 70, 107, 0) 90%),
     linear-gradient(16deg, rgba(18, 212, 185, 1) 0%, rgba(0, 153, 255, 1) 100%);
 }
 
 .todo-box {
-  @apply m-4 border-t border-zinc-600 w-96;
+  @apply m-4 w-96 border-t border-zinc-600;
 }
 </style>

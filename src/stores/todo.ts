@@ -15,22 +15,22 @@ export const useTodoStore = defineStore('todoStore', {
       entries: [
         {
           state: TodoEntryState.Open,
-          name: 'Deine Mutter ficken',
+          name: 'Lorem ipsum',
           id: 0,
         },
         {
           state: TodoEntryState.Closed,
-          name: 'Deine Schwester ficken',
+          name: 'Data elpate',
           id: 1,
         },
         {
           state: TodoEntryState.Open,
-          name: 'Deine Tante ficken',
+          name: 'sindo mesodo',
           id: 2,
         },
         {
           state: TodoEntryState.Open,
-          name: 'Deine Cousine ficken',
+          name: 'Olvane sitoro',
           id: 3,
         },
       ],

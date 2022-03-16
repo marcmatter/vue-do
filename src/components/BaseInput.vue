@@ -5,7 +5,7 @@
       pl-2 outline-none focus-within:border-zinc-400 dark:border-zinc-600 dark:bg-zinc-700 focus-within:dark:border-zinc-500
     `"
   >
-    <Icon v-if="icon" :icon="icon" :class="`my-auto h-6 w-6 flex-shrink-0 ${iconClass || ''}`" />
+    <BaseIcon v-if="icon" :icon="icon" :class="`my-auto h-6 w-6 flex-shrink-0 ${iconClass || ''}`" />
     <input
       :class="`
         w-full bg-transparent py-2 pl-2
