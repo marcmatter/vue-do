@@ -5,7 +5,7 @@
     </button>
     <div class="flex flex-wrap items-center gap-2">
       <BaseInput icon="search" type="text" placeholder="Search" class="w-full md:w-1/2" />
-      <BaseButton icon="plus" class="h-8">Add Filter</BaseButton>
+      <BaseButton icon="plus" class="relative h-8">Add Filter<ToDoToolsFilter /></BaseButton>
     </div>
   </section>
 </template>

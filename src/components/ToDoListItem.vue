@@ -107,7 +107,7 @@ function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
 
 <style lang="scss" scoped>
 .todo-item {
-  @apply flex w-full border-b border-zinc-600 bg-zinc-100 dark:bg-zinc-800;
+  @apply flex w-full border-b border-zinc-600 bg-zinc-100 px-3 dark:bg-zinc-800 md:p-0;
 
   .content {
     @apply mr-2 w-full py-2;
