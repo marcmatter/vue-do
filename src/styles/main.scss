@@ -6,18 +6,14 @@
 
 html {
   @apply bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100;
+}
 
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+html, body, #app {
+  height: -webkit-fill-available;
 }
 
 #app {
   @apply flex flex-col justify-center items-center;
-}
-
-body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
 }
 
 // stop mobile focus zoom -> https://medium.com/cssjunction/how-to-stop-zoom-in-on-input-focus-on-mobile-devices-835edcaa2ba4

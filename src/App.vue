@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper flex w-full flex-col">
     <AppHeaderBar :is-loading="false" />
-    <main class="flex flex-1 flex-col">
+    <main class="flex h-full flex-1 flex-col">
       <router-view />
     </main>
     <AppFooter v-if="showFooter" class="-mt-16 md:mt-0" />

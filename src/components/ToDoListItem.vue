@@ -1,7 +1,7 @@
 <template>
   <div class="todo-item">
     <BaseIcon
-      class="drag-handle my-[0.625rem] mr-2 h-10 w-10 text-zinc-400"
+      class="drag-handle my-[0.625rem] mr-2 h-10 w-10 cursor-grab text-zinc-400"
       icon="align-justify"
       :class="{
         hidden: !hasDragHandle,
@@ -107,7 +107,7 @@ function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
 
 <style lang="scss" scoped>
 .todo-item {
-  @apply flex w-full border-b border-zinc-600;
+  @apply flex w-full border-b border-zinc-600 bg-zinc-100 dark:bg-zinc-800;
 
   .content {
     @apply mr-2 w-full py-2;
@@ -155,6 +155,12 @@ function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
         @apply opacity-100;
       }
     }
+  }
+}
+.sortable-ghost {
+  @apply relative;
+  &::before {
+    @apply absolute top-0 left-0 h-full w-full bg-zinc-200 content-[''] dark:bg-grey;
   }
 }
 </style>
