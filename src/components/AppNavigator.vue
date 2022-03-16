@@ -63,7 +63,7 @@ const endpoints = reactive({
 
 <style scoped>
 .navigatorContainer {
-  @apply fixed absolute m-0 h-full w-screen select-none bg-zinc-50 p-3 text-zinc-700 shadow;
+  @apply fixed absolute z-10 m-0 h-full w-screen select-none bg-zinc-50 p-3 text-zinc-700 shadow;
   @apply dark:bg-grey dark:text-zinc-50;
   @apply md:relative md:block md:h-5/6 md:w-1/3 md:max-w-xs md:rounded-xl;
 }
