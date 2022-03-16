@@ -1,24 +1,18 @@
 <template>
-  <div class="w-full h-3 absolute top-0 left-0 top-rainbow-bar" />
+  <div class="pz-3 top-rainbow-bar h-3 w-full" />
   <div
-    class="w-full h-3 absolute top-0 left-0 top-rainbow-bar is-loading"
+    class="top-rainbow-bar is-loading absolute top-0 left-0 h-3 w-full"
     :class="{
       hide: !isLoading,
     }"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'TopRainbowBar',
-
-  props: {
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
+<script lang="ts" setup>
+defineProps({
+  isLoading: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

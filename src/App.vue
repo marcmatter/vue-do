@@ -1,29 +1,60 @@
 <template>
-  <div class="min-h-screen w-full">
-    <TopRainbowBar :is-loading="false" />
-    <main class="flex flex-col justify-center items-center">
-      <router-view class="grow-2" />
+  <div class="wrapper flex w-full flex-col">
+    <AppHeaderBar :is-loading="false" />
+    <main class="flex flex-1 flex-col">
+      <router-view />
     </main>
-    <AppFooter />
+    <AppFooter v-if="showFooter" class="-mt-16 md:mt-0" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, onBeforeMount, watch } from 'vue';
+
+import { configStoreAdapter, useConfigStore } from './stores/config';
 import './styles/main.scss';
-import TopRainbowBar from './components/TopRainbowBar.vue';
+
+import AppHeaderBar from './components/AppHeaderBar.vue';
 import AppFooter from './components/AppFooter.vue';
+import router from './router';
 
 export default defineComponent({
   name: 'App',
 
   components: {
-    TopRainbowBar,
+    AppHeaderBar,
     AppFooter,
   },
 
-  setup() {},
+  setup() {
+    const configStore = useConfigStore();
+    const showFooter = computed(() => router.currentRoute.value.meta.showFooter);
+
+    onBeforeMount(() => {
+      const configStateRestored = configStoreAdapter.load();
+      if (configStateRestored) {
+        configStore.$state = configStateRestored;
+      }
+    });
+
+    watch(
+      () => configStore.$state,
+      (value) => {
+        configStoreAdapter.save(value);
+      },
+      { deep: true }
+    );
+
+    return {
+      showFooter,
+    };
+  },
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.wrapper {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+</style>
