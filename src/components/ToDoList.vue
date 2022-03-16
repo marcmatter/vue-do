@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full">
+  <div class="mt-2 h-full w-full">
     <Draggable
       :list="[...todoStore.entries]"
       group="todoStore_entries"
@@ -25,3 +25,9 @@ import { useTodoStore } from '../stores/todo';
 
 const todoStore = useTodoStore();
 </script>
+
+<style lang="scss" scoped>
+.ghostClass {
+  @apply bg-primary;
+}
+</style>
