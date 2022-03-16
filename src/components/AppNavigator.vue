@@ -10,8 +10,8 @@
       </button>
     </div>
     <nav>
-      <NavigatorSection title="My Tasks" :endpoints="endpoints.tasks" />
-      <NavigatorSection title="Categories" :endpoints="endpoints.categories" />
+      <AppNavigatorSection title="My Tasks" :endpoints="endpoints.tasks" />
+      <AppNavigatorSection title="Categories" :endpoints="endpoints.categories" />
     </nav>
   </aside>
 </template>
