@@ -44,6 +44,7 @@
         </p>
       </div>
     </div>
+    <div v-bind="getPriorityIcon(todoItem.priority)"></div>
     <div
       class="toggle"
       :class="{
@@ -103,6 +104,17 @@ function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
     eventTarget.blur();
   }
 }
+
+function getPriorityIcon(priority) {
+  switch (priority) {
+    case 'low':
+      return 'v';
+    case 'medium':
+      return '-';
+    case 'high':
+      return '^';
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -116,7 +128,7 @@ function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
       @apply w-full bg-transparent transition;
 
       &.done {
-        @apply text-zinc-500;
+        @apply text-zinc-500 line-through;
       }
     }
 
