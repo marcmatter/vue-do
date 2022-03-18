@@ -35,9 +35,9 @@
           <input
             value="No due date"
             maxlength="10"
-            @focus="(event: any) => (event.target.value = '')"
-            @blur="(event: any) => (event.target.value = 'No due date')"
-            @keypress.enter="(event: any) => event.target?.blur()"
+            @focus="(event) => (event.target.value = '')"
+            @blur="(event) => (event.target.value = 'No due date')"
+            @keypress.enter="(event) => event.target?.blur()"
             placeholder="dd.mm.yyyy"
             type="text"
           />
