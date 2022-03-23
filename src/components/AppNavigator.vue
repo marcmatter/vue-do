@@ -78,7 +78,7 @@ const endpoints = reactive({
       icon: 'folder-f',
       active: true,
     },
-    // ...todoStore.categories.map((category) => (category),
+    ...todoStore.categories.map((category: any) => ({...category, icon: 'folder'})),
   ],
 });
 </script>

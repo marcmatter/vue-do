@@ -38,6 +38,7 @@ export interface TodoCategory {
   name: string;
   description?: string;
   color?: string;
+  icon?: string;
 
   isDeleted?: boolean;
   deletedAt?: Dayjs;
