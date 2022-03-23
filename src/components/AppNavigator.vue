@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { useConfigStore } from '../stores/config';
 import router from '../router';
-import { useTodoStore } from "../stores/todo";
+import { useTodoStore } from '../stores/todo';
 
 defineProps({
   isNavigationOpen: Boolean,
