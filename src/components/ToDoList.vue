@@ -1,5 +1,6 @@
 <template>
-  <div class="h-full w-full">
+  <div class="mt-2 h-full w-full">
+    <BaseButton icon="plus" class="!h-12 !w-full" @click="todoStore.addEntry({}, 0)">Add Item</BaseButton>
     <Draggable
       :list="[...todoStore.entries]"
       group="todoStore_entries"
@@ -22,6 +23,13 @@
 <script lang="ts" setup>
 import Draggable from 'vuedraggable';
 import { useTodoStore } from '../stores/todo';
+import BaseButton from './BaseButton.vue';
 
 const todoStore = useTodoStore();
 </script>
+
+<style lang="scss" scoped>
+.ghostClass {
+  @apply bg-primary;
+}
+</style>

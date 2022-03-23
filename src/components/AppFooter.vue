@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="min-h-16 mt-2 flex w-full justify-between gap-2 bg-white p-3 text-zinc-700 dark:bg-zinc-900 dark:text-white"
+    class="min-h-16 sticky bottom-0 mt-2 flex w-full justify-between gap-2 bg-white p-3 text-zinc-700 dark:bg-zinc-900 dark:text-white"
   >
     <div class="text-sm">
       <p>Released under the <span class="font-bold">MPL-2.0 Licence.</span></p>

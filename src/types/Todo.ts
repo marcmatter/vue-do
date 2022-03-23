@@ -5,11 +5,18 @@ export enum TodoEntryState {
   Closed,
 }
 
+export enum TodoEntryPriority {
+  Low,
+  Medium,
+  High,
+}
+
 export interface TodoEntry {
   id: number;
   name: string;
   description?: string;
   state: TodoEntryState;
+  priority: TodoEntryPriority;
   dueDate?: Dayjs;
 }
 
@@ -31,11 +38,11 @@ export interface TodoCategory {
   description?: string;
   color?: string;
 
-  isDeleted: boolean;
+  isDeleted?: boolean;
   deletedAt?: Dayjs;
 
-  createdAt: Dayjs;
-  modifiedAt: Dayjs;
+  createdAt?: Dayjs;
+  modifiedAt?: Dayjs;
 }
 
 export interface TodoEntryToCategory {
