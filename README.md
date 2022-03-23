@@ -1,34 +1,14 @@
-# Vue-Do
-
-## Projekt setup
-```
-$ npm install
-```
-
-### Kompilieren und hot-reloads für Produktion
-```
-$ npm run dev
-```
-
-### Kompilieren und komprimieren für Produktion
-```
-$ npm run build
-```
-
-### Startet Cypress Tests
-```
-$ npm run cy
-```
+# Vue-Do{style: color:red}
 
 ## Konzept
 Als Schulprojekt haben Neo (@justablob) und Marc (@marcmatter) eine Todo Web-App erstellt.
 Dabei wurden moderne Web Technologien wie [Typescript](https://www.typescriptlang.org/) und [Vue.js](https://vuejs.org/) 
 eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechene Todo App zu bieten, welche im Alltag einfach auf einem Mobil- oder Desktopgerät verwendet werden kann.
 
-|             | Mockup                                                          |
-|-------------|-----------------------------------------------------------------|
-| Login Seite | ![Mockup todo page](./documentation/images/mockupLoginPage.jpg) |
-| Startseite  | ![Mockup todo page](./documentation/images/mockupTodoPage.jpg)  |
+|             | Mockup                                                            |
+|-------------|-------------------------------------------------------------------|
+| Login Seite | ![Mockup login page](./documentation/images/mockupLoginPage.jpg)  |
+| Startseite  | ![Mockup landing page](./documentation/images/mockupTodoPage.jpg) |
 
 
 ## Zeitplan
@@ -55,10 +35,10 @@ eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechene
 Weitere informationen -> [Changelog](./documentation/changelog.md)
 
 ## Vergleich mit Mockup und Endresultat
-|             | Mockup                                                          | Resultat                                                        |
-|-------------|-----------------------------------------------------------------|-----------------------------------------------------------------|
-| Login Seite | ![Mockup todo page](./documentation/images/mockupLoginPage.jpg) | ![Mockup todo page](./documentation/images/resultLoginPage.jpg) |
-| Startseite  | ![Mockup todo page](./documentation/images/mockupTodoPage.jpg)  | ![Mockup todo page](./documentation/images/mockupTodoPage.jpg)  |
+|             | Mockup                                                            | Resultat                                                          |
+|-------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
+| Login Seite | ![Mockup login page](./documentation/images/mockupLoginPage.jpg)  | ![Result login page](./documentation/images/resultLoginPage.jpg)  |
+| Startseite  | ![Mockup landing page](./documentation/images/mockupTodoPage.jpg) | ![Result landing page](./documentation/images/mockupTodoPage.jpg) |
 
 ## Browser Tests
 
@@ -68,7 +48,7 @@ Weitere informationen -> [Changelog](./documentation/changelog.md)
 | Startseite                               |        |         |        |
 | [cypress](https://www.cypress.io/) Tests |        |         |        |
 
-## Funktiontests mit [cypress.io](https://www.cypress.io/)
+## Funktionstests mit [cypress.io](https://www.cypress.io/)
 
 
 ## Feedback 

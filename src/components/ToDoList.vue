@@ -13,7 +13,7 @@
           :todo-item="element"
           :onPatch="(item) => todoStore.patchEntry(element.id, item)"
           :onDelete="() => todoStore.deleteEntry(element.id)"
-          :ref="el => todoListItemRefs[element.id] = el"
+          :ref="(el) => (todoListItemRefs[element.id] = el)"
         />
       </template>
     </Draggable>
@@ -24,22 +24,25 @@
 import Draggable from 'vuedraggable';
 import { useTodoStore } from '../stores/todo';
 import BaseButton from './BaseButton.vue';
-import {TodoEntryPriority, TodoEntryState} from "../types/Todo";
-import { Ref } from "vue";
+import { TodoEntryPriority, TodoEntryState } from '../types/Todo';
+import { Ref } from 'vue';
 
 const todoStore = useTodoStore();
 
 const addEntry = () => {
-  todoStore.addEntry({
-    name: "",
-    state: TodoEntryState.Open,
-    priority: TodoEntryPriority.Medium,
-    id: Date.now(),
-  }, 0);
-}
+  todoStore.addEntry(
+    {
+      name: '',
+      state: TodoEntryState.Open,
+      priority: TodoEntryPriority.Medium,
+      id: Date.now(),
+    },
+    0
+  );
+};
 
 const todoListItemRefs: Ref<HTMLElement> = ref([]) as any;
-onMounted(() => console.log(todoListItemRefs.value))
+onMounted(() => console.log(todoListItemRefs.value));
 </script>
 
 <style lang="scss" scoped>
