@@ -1,12 +1,18 @@
 <template>
   <div class="todo-item">
-    <BaseIcon
-      class="drag-handle my-[0.625rem] mr-2 h-10 w-10 cursor-grab text-zinc-400"
-      icon="align-justify"
+    <div
+      class="toggle"
       :class="{
-        hidden: !hasDragHandle,
+        active: todoItem.state === TodoEntryState.Closed,
       }"
-    />
+      @click="
+        onPatch(
+          todoItem.state === TodoEntryState.Open ? { state: TodoEntryState.Closed } : { state: TodoEntryState.Open }
+        )
+      "
+    >
+      <BaseIcon icon="check" />
+    </div>
     <div class="content">
       <div class="row">
         <input
@@ -45,19 +51,6 @@
       </div>
     </div>
     <div v-bind="getPriorityIcon(todoItem.priority)"></div>
-    <div
-      class="toggle"
-      :class="{
-        active: todoItem.state === TodoEntryState.Closed,
-      }"
-      @click="
-        onPatch(
-          todoItem.state === TodoEntryState.Open ? { state: TodoEntryState.Closed } : { state: TodoEntryState.Open }
-        )
-      "
-    >
-      <BaseIcon icon="check" />
-    </div>
   </div>
 </template>
 
@@ -69,11 +62,6 @@ const props = defineProps({
   todoItem: {
     required: true,
     type: Object as PropType<TodoEntry>,
-  },
-  hasDragHandle: {
-    required: false,
-    default: true,
-    type: Boolean,
   },
   onPatch: {
     required: true,
@@ -122,7 +110,7 @@ function getPriorityIcon(priority) {
   @apply flex w-full border-b border-zinc-600 bg-zinc-100 px-3 dark:bg-zinc-800 md:p-0;
 
   .content {
-    @apply mr-2 w-full py-2;
+    @apply ml-2 w-full py-2;
 
     .title {
       @apply w-full bg-transparent transition;
