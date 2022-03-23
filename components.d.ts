@@ -12,6 +12,8 @@ declare module 'vue' {
     BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
     BaseInput: typeof import('./src/components/BaseInput.vue')['default']
     BaseSeparator: typeof import('./src/components/BaseSeparator.vue')['default']
+    Navigator: typeof import('./src/components/Navigator.vue')['default']
+    NavigatorSection: typeof import('./src/components/NavigatorSection.vue')['default']
     ToDo: typeof import('./src/components/ToDo.vue')['default']
     ToDoList: typeof import('./src/components/ToDoList.vue')['default']
     ToDoListAdd: typeof import('./src/components/ToDoListAdd.vue')['default']

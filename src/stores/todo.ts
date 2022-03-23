@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 import { TodoCategory, TodoEntry, TodoEntryPriority, TodoEntryState, TodoEntryToCategory } from '../types/Todo';
+import { LocalStorageAdapter } from '../adapters/localStorage';
+import { Dayjs } from '../utils';
+import { SerializeStore } from '../types/Adapter';
 
 export interface TodoStore {
   categories: TodoCategory[];
@@ -142,3 +145,78 @@ export const useTodoStore = defineStore('todoStore', {
     },
   },
 });
+
+export const serializeTodoStore: SerializeStore<TodoStore> = {
+  serialize(todoStore) {
+    const categories = todoStore.categories.map((el) => ({
+      ...el,
+      createdAt: el.createdAt?.toString(),
+      modifiedAt: el.modifiedAt?.toString(),
+      deletedAt: el.deletedAt?.toString(),
+    }));
+
+    const entries = todoStore.entries.map((el) => ({
+      ...el,
+      dueDate: el.dueDate?.toString(),
+      createdAt: el.createdAt?.toString(),
+      modifiedAt: el.modifiedAt?.toString(),
+      deletedAt: el.deletedAt?.toString(),
+    }));
+
+    const entriesToCategories = todoStore.entriesToCategories.map((el) => ({
+      ...el,
+    }));
+
+    return JSON.stringify({
+      categories,
+      entries,
+
+      entriesToCategories,
+    });
+  },
+
+  parse(input) {
+    try {
+      const parsed = JSON.parse(input);
+
+      const categories = parsed.categories.map(
+        (el: any) =>
+          ({
+            ...el,
+            createdAt: el.createdAt && Dayjs(el.createdAt),
+            modifiedAt: el.modifiedAt && Dayjs(el.modifiedAt),
+            deletedAt: el.deletedAt && Dayjs(el.deletedAt),
+          } as TodoCategory)
+      );
+
+      const entries = parsed.entries.map(
+        (el: any) =>
+          ({
+            ...el,
+            dueDate: el.dueDate && Dayjs(el.dueDate),
+            createdAt: el.createdAt && Dayjs(el.createdAt),
+            modifiedAt: el.modifiedAt && Dayjs(el.modifiedAt),
+            deletedAt: el.deletedAt && Dayjs(el.deletedAt),
+          } as TodoEntry)
+      );
+
+      const entriesToCategories = parsed.entriesToCategories.map(
+        (el: any) =>
+          ({
+            ...el,
+          } as TodoEntryToCategory)
+      );
+
+      return {
+        categories,
+        entries,
+
+        entriesToCategories,
+      };
+    } catch {
+      return undefined;
+    }
+  },
+};
+
+export const todoStoreAdapter = new LocalStorageAdapter('vuedo:todo', serializeTodoStore);

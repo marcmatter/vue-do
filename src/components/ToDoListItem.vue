@@ -157,7 +157,7 @@ function getPriorityIcon(priority) {
     @apply m-2 my-[1.125rem] flex h-6 w-6 shrink-0 rounded-full border border-zinc-500 transition;
 
     svg {
-      @apply m-auto w-3 text-zinc-800 opacity-0;
+      @apply m-auto w-6 text-zinc-800 opacity-0;
     }
 
     &.active {

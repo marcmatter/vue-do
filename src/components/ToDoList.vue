@@ -5,7 +5,6 @@
       :list="[...todoStore.entries]"
       group="todoStore_entries"
       item-key="id"
-      handle=".drag-handle"
       @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
     >
       <template #item="{ element }">

@@ -18,6 +18,12 @@ export interface TodoEntry {
   state: TodoEntryState;
   priority: TodoEntryPriority;
   dueDate?: Dayjs;
+
+  isDeleted?: boolean;
+  deletedAt?: Dayjs;
+
+  createdAt?: Dayjs;
+  modifiedAt?: Dayjs;
 }
 
 export interface TodoStore {
@@ -25,11 +31,6 @@ export interface TodoStore {
   entries: TodoEntry[];
 
   entriesToCategories: TodoEntryToCategory[];
-  isDeleted: boolean;
-  deletedAt?: Dayjs;
-
-  createdAt: Dayjs;
-  modifiedAt: Dayjs;
 }
 
 export interface TodoCategory {

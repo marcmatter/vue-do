@@ -12,6 +12,7 @@
 import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 
 import { configStoreAdapter, useConfigStore } from './stores/config';
+import { todoStoreAdapter, useTodoStore } from './stores/todo';
 import './styles/main.scss';
 
 import AppHeaderBar from './components/AppHeaderBar.vue';
@@ -28,12 +29,17 @@ export default defineComponent({
 
   setup() {
     const configStore = useConfigStore();
+    const todoStore = useTodoStore();
     const showFooter = computed(() => router.currentRoute.value.meta.showFooter);
 
     onBeforeMount(() => {
       const configStateRestored = configStoreAdapter.load();
+      const todoStoreRestored = todoStoreAdapter.load();
       if (configStateRestored) {
         configStore.$state = configStateRestored;
+      }
+      if (todoStoreRestored) {
+        todoStore.$state = todoStoreRestored;
       }
     });
 
@@ -41,6 +47,14 @@ export default defineComponent({
       () => configStore.$state,
       (value) => {
         configStoreAdapter.save(value);
+      },
+      { deep: true }
+    );
+
+    watch(
+      () => todoStore.$state,
+      (value) => {
+        todoStoreAdapter.save(value);
       },
       { deep: true }
     );
