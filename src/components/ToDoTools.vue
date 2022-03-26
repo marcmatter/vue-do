@@ -6,8 +6,8 @@
     <div class="flex flex-wrap items-center gap-2">
       <BaseInput icon="search" type="text" placeholder="Search" class="w-full md:w-1/2" />
       <div class="relative">
-        <BaseButton icon="filter" class="h-8">Add Filter</BaseButton>
-        <ToDoToolsFilter />
+        <BaseButton icon="filter" class="h-8" @click="toggleFilter">Add Filter</BaseButton>
+        <ToDoToolsFilter :class="{ hidden: !filter.show }" />
       </div>
     </div>
   </section>
@@ -15,4 +15,9 @@
 
 <script lang="ts" setup>
 const emit = defineEmits(['toggleNavigation']);
+const filter = reactive({ show: false });
+
+const toggleFilter = () => {
+  filter.show = !filter.show;
+};
 </script>

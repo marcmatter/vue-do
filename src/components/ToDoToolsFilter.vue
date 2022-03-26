@@ -1,42 +1,42 @@
 <template>
-  <div class="h-30 absolute top-full left-0 p-2 rounded-lg mt-2 bg-zinc-600">
+  <div class="h-30 absolute top-full left-0 mt-2 rounded-lg bg-zinc-600 p-2 shadow">
     <ul>
       <li>
-        <label>
-          Priotity
-          <select name="" >
-            <option value="all">All</option>
-            <option value="open">Open</option>
-            <option value="closed">Closed</option>
-          </select>
-        </label>
+        <BaseSelect
+          placeholder="Priorities"
+          placeholderIcon="chevrons-square-up-f"
+          :options="[
+            { id: 0, name: 'High', icon: 'chevron-square-up' },
+            { id: 1, name: 'Medium', icon: 'chevron-square-middle' },
+            { id: 2, name: 'Low', icon: 'chevron-square-down' },
+          ]"
+        />
       </li>
       <li>
-        <label>
-          State
-          <select name="" >
-            <option value="all">All</option>
-            <option value="open">Open</option>
-            <option value="closed">Closed</option>
-          </select>
-        </label>
+        <BaseSelect
+          placeholder="States"
+          placeholderIcon="cogs-f"
+          :options="[
+            { id: 0, name: 'Open', icon: 'cogs' },
+            { id: 1, name: 'Closed', icon: 'task-list' },
+          ]"
+        />
       </li>
       <li>
-        <label>
-          Categorie
-          <select name="" >
-             <option v-for="category in todoStore.categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-          </select>
-        </label>
+        <BaseSelect
+          placeholder="Categories"
+          placeholderIcon="tags"
+          :options="todoStore.categories.map((category) => ({ icon: 'tag', ...category }))"
+        />
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import {useTodoStore} from "../stores/todo";
+import { useTodoStore } from '../stores/todo';
 
-  const todoStore = useTodoStore();
+const todoStore = useTodoStore();
 </script>
 
 <style scoped></style>

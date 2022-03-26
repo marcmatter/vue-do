@@ -10,8 +10,8 @@
       </button>
     </div>
     <nav>
-      <AppNavigatorSection title="My Tasks" :endpoints="endpoints.tasks" />
-      <AppNavigatorSection title="Priority" :endpoints="endpoints.priority" />
+      <AppNavigatorSection title="States" :endpoints="endpoints.tasks" />
+      <AppNavigatorSection title="Priorities" :endpoints="endpoints.priority" />
       <AppNavigatorSection title="Categories" :endpoints="endpoints.categories" />
     </nav>
   </aside>
@@ -40,13 +40,13 @@ const todoStore = useTodoStore();
 const endpoints = reactive({
   tasks: [
     {
-      name: 'All Entries',
+      name: 'All States',
       icon: 'inboxes-f',
       active: true,
     },
     {
       name: 'Open',
-      icon: 'cogs-f',
+      icon: 'cogs',
     },
     {
       name: 'Closed',
@@ -56,7 +56,7 @@ const endpoints = reactive({
   priority: [
     {
       name: 'All Priorities',
-      icon: 'inboxes-f',
+      icon: 'chevrons-square-up-f',
       active: true,
     },
     {
@@ -74,11 +74,11 @@ const endpoints = reactive({
   ],
   categories: [
     {
-      name: 'All Entries',
-      icon: 'folder-f',
+      name: 'All Categories',
+      icon: 'tags-f',
       active: true,
     },
-    ...todoStore.categories.map((category: any) => ({...category, icon: 'folder'})),
+    ...todoStore.categories.map((category: any) => ({ ...category, icon: 'tag' })),
   ],
 });
 </script>
