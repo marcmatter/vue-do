@@ -9,7 +9,12 @@
     </div>
     <ul>
       <li v-for="endpoint in endpoints" :key="endpoint.name">
-        <a href="javascript:void(0)" @click="selectEndPoint(endpoint)" class="navigationButton" :class="{ active: endpoint.active }">
+        <a
+          href="javascript:void(0)"
+          @click="selectEndPoint(endpoint)"
+          class="navigationButton"
+          :class="{ active: endpoint.active }"
+        >
           <BaseIcon :icon="endpoint.icon" class="mr-4 h-8 md:mr-1 md:h-4" />
           {{ endpoint.name }}
         </a>

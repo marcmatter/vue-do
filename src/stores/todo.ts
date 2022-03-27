@@ -118,7 +118,7 @@ export const useTodoStore = defineStore('todoStore', {
     },
     addCategory(category: TodoCategory, position?: number) {
       const categoryId = Math.max(...this.categories.map((el) => el.id)) + 1;
-      const newCategory = {  ...category, id: categoryId };
+      const newCategory = { ...category, id: categoryId };
 
       if (position != null) {
         this.categories.splice(position, 0, newCategory);

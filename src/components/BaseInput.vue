@@ -53,6 +53,6 @@ defineProps({
   onEnter: {
     type: Function as PropType<(payload: Event) => void>,
     required: false,
-  }
+  },
 });
 </script>

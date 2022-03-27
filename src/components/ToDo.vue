@@ -20,8 +20,4 @@ const props: any = defineProps({
 const toggleNavigation = () => {
   emit('toggleNavigation');
 };
-
-const queryEntriesByName = (searchTerm) => {
-  props.entries.filter((entry) => entry.name.includes(searchTerm));
-};
 </script>

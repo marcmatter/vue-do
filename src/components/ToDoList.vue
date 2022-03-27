@@ -2,7 +2,7 @@
   <div class="mt-2 h-full w-full">
     <BaseButton icon="plus" class="!h-12 !w-full" @click="addEntry()">Add Item</BaseButton>
     <Draggable
-      :list="[...entries]"
+      :list="[...props.entries]"
       group="todoStore_entries"
       item-key="id"
       @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
@@ -27,7 +27,7 @@ import { TodoEntry, TodoEntryPriority, TodoEntryState } from '../types/Todo';
 
 const todoStore = useTodoStore();
 
-const { entries } = defineProps({
+const props = defineProps({
   entries: {
     type: Array as PropType<TodoEntry[]>,
     require: true,
