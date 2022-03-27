@@ -1,5 +1,13 @@
 import { defineStore } from 'pinia';
-import { TodoCategory, TodoEntry, TodoEntryPriority, TodoEntryState, TodoEntryToCategory } from '../types/Todo';
+import {
+  TodoCategory,
+  TodoEntry,
+  TodoEntryPriority,
+  TodoEntryState,
+  TodoEntryToCategory,
+  TodoPriority,
+  TodoState,
+} from '../types/Todo';
 import { LocalStorageAdapter } from '../adapters/localStorage';
 import { Dayjs } from '../utils';
 import { SerializeStore } from '../types/Adapter';
@@ -7,6 +15,8 @@ import { SerializeStore } from '../types/Adapter';
 export interface TodoStore {
   categories: TodoCategory[];
   entries: TodoEntry[];
+  priorities?: TodoPriority[];
+  states?: TodoState[];
 
   entriesToCategories: TodoEntryToCategory[];
 }
@@ -28,30 +38,47 @@ export const useTodoStore = defineStore('todoStore', {
           name: 'Private',
         },
       ],
+      priorities: [
+        {
+          id: TodoEntryPriority.High,
+          name: 'High',
+          icon: 'chevron-square-up',
+        },
+        {
+          id: TodoEntryPriority.Medium,
+          name: 'Medium',
+          icon: 'chevron-square-middle',
+        },
+        {
+          id: TodoEntryPriority.Low,
+          name: 'Low',
+          icon: 'chevron-square-down',
+        },
+      ],
+      states: [
+        {
+          id: TodoEntryState.Open,
+          name: 'Open',
+          icon: 'cogs',
+        },
+        {
+          id: TodoEntryState.Closed,
+          name: 'Closed',
+          icon: 'task-list',
+        },
+      ],
       entries: [
         {
           state: TodoEntryState.Open,
           priority: TodoEntryPriority.Medium,
-          name: 'Lorem ipsum',
+          name: 'Welcome to VueDo!',
           id: 0,
         },
         {
           state: TodoEntryState.Closed,
-          priority: TodoEntryPriority.Low,
-          name: 'Data elpate',
-          id: 1,
-        },
-        {
-          state: TodoEntryState.Open,
           priority: TodoEntryPriority.Medium,
-          name: 'sindo mesodo',
-          id: 2,
-        },
-        {
-          state: TodoEntryState.Open,
-          priority: TodoEntryPriority.High,
-          name: 'Olvane sitoro',
-          id: 3,
+          name: 'Setup VueDo',
+          id: 1,
         },
       ],
 
@@ -60,12 +87,29 @@ export const useTodoStore = defineStore('todoStore', {
   },
 
   actions: {
-    getEntriesForCategory(categoryId: number) {
-      const entryIds = this.entriesToCategories.filter((el) => el.categoryId === categoryId).map((el) => el.entryId);
-
-      return this.entries.filter((el) => entryIds.includes(el.id));
+    getEntriesForCategory(entries: TodoEntry[], categoryId: number) {
+      if (categoryId !== undefined) {
+        const entryIds = this.entriesToCategories.filter((el) => el.categoryId === categoryId).map((el) => el.entryId);
+        return entries.filter((el) => entryIds.includes(el.id));
+      }
+      return entries;
+    },
+    getEntriesForState(entries: TodoEntry[], entryState: TodoEntryState) {
+      if (entryState !== undefined) {
+        return entries.filter((el) => el.state === entryState);
+      }
+      return entries;
+    },
+    getEntriesForPriority(entries: TodoEntry[], entryPriority: TodoEntryPriority) {
+      if (entryPriority !== undefined) {
+        return entries.filter((el) => el.priority === entryPriority);
+      }
+      return entries;
     },
     addEntry(entry: TodoEntry, position?: number) {
+      const entryId = Math.max(...this.entries.map((el) => el.id)) + 1;
+      entry = { ...entry, id: entryId };
+
       if (position != null) {
         this.entries.splice(position, 0, entry);
       } else {

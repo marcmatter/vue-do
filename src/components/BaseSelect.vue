@@ -19,7 +19,6 @@
     </template>
     <input
       :placeholder="placeholder"
-      @change="onOptionChange"
       @focus="showAutoComplete"
       @blur="hideAutoComplete"
       autocomplete="off"
@@ -40,7 +39,11 @@
         </button>
       </li>
     </ul>
-    <BaseIcon v-if="autocomplete.selectedOption" icon="close" class="my-auto h-5 w-5 flex-shrink-0 text-zinc-400" />
+    <BaseIcon
+      v-if="showRemoveValue && autocomplete.selectedOption"
+      icon="close"
+      class="my-auto h-5 w-5 flex-shrink-0 text-zinc-400"
+    />
     <BaseIcon icon="triangle-f" class="my-auto mr-2 h-3 w-3 flex-shrink-0 rotate-180 text-zinc-400" />
   </div>
 </template>
@@ -57,15 +60,15 @@ interface Autocomplete {
   show: boolean;
   selectedOption?: Option;
 }
-let autocomplete = reactive({
-  show: false,
-  selectedOption: {},
-} as Autocomplete);
 
 const props = defineProps({
   options: {
     type: Array as PropType<Option[]>,
     required: true,
+  },
+  selectedOption: {
+    type: Object as PropType<Option>,
+    required: false,
   },
   placeholder: {
     type: String,
@@ -73,7 +76,11 @@ const props = defineProps({
   },
   placeholderIcon: {
     type: String,
-    required: true,
+    required: false,
+  },
+  showRemoveValue: {
+    type: Boolean,
+    default: true,
   },
   iconClass: {
     type: String,
@@ -93,18 +100,11 @@ const props = defineProps({
   },
 });
 
-const onOptionChange = (event) => {
-  const optionsName = props.options.map((option: Option) => option.name);
+let autocomplete = reactive({
+  show: false,
+  selectedOption: props.selectedOption || {},
+} as Autocomplete);
 
-  console.log({ optionsName });
-  console.log({ value: event.currentTarget.value2 });
-
-  if (optionsName.includes(event.currentTarget.value)) {
-    props.onChange && props.onChange(event);
-  } else {
-    autocomplete.selectedOption = undefined;
-  }
-};
 const showAutoComplete = () => {
   autocomplete.show = true;
 };
@@ -115,5 +115,12 @@ const hideAutoComplete = () => {
 
 const selectOption = (event) => {
   autocomplete.selectedOption = props.options.find((option: Option) => option.id == event.currentTarget.name);
+  const optionsIds = props.options.map((option: Option) => option.id);
+
+  if (autocomplete.selectedOption && optionsIds.includes(autocomplete.selectedOption.id)) {
+    props.onChange && props.onChange(event);
+  } else {
+    autocomplete.selectedOption = undefined;
+  }
 };
 </script>

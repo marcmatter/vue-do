@@ -5,10 +5,22 @@ export enum TodoEntryState {
   Closed,
 }
 
+export interface TodoState {
+  id: TodoEntryState;
+  icon: string;
+  name: string;
+}
+
 export enum TodoEntryPriority {
   Low,
   Medium,
   High,
+}
+
+export interface TodoPriority {
+  id: TodoEntryPriority;
+  icon: string;
+  name: string;
 }
 
 export interface TodoEntry {

@@ -6,7 +6,7 @@
     </div>
     <ul>
       <li v-for="endpoint in endpoints" :key="endpoint.name">
-        <a href="javascript:void(0)" class="navigationButton" :class="{ active: endpoint.active }">
+        <a href="javascript:void(0)" @click="selectEndPoint(endpoint)" class="navigationButton" :class="{ active: endpoint.active }">
           <BaseIcon :icon="endpoint.icon" class="mr-4 h-8 md:mr-0 md:h-4" />
           {{ endpoint.name }}
         </a>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -26,6 +26,12 @@ defineProps({
     required: true,
   },
 });
+
+const selectEndPoint = (endpoint) => {
+  props.endpoints.forEach((_endpoint) => (_endpoint.active = false));
+  endpoint.active = true;
+  endpoint.event();
+};
 </script>
 
 <style scoped lang="scss">

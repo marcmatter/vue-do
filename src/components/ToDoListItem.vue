@@ -50,13 +50,22 @@
         </p>
       </div>
     </div>
-    <div v-bind="getPriorityIcon(todoItem.priority)"></div>
+    <BaseSelect
+      class="h-8 w-44"
+      :options="todoStore.priorities"
+      :selectedOption="todoStore.priorities.find((prio) => prio.id === todoItem.priority)"
+      :onChange="changePriority"
+      :showRemoveValue="false"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Dayjs } from '../utils';
 import { TodoEntry, TodoEntryState } from '../types/Todo';
+import { useTodoStore } from '../stores/todo';
+
+const todoStore = useTodoStore();
 
 const props = defineProps({
   todoItem: {
@@ -93,21 +102,19 @@ function changeName(event: KeyboardEvent | FocusEvent, shouldBlur = false) {
   }
 }
 
-function getPriorityIcon(priority) {
-  switch (priority) {
-    case 'low':
-      return 'v';
-    case 'medium':
-      return '-';
-    case 'high':
-      return '^';
-  }
+function changePriority(event: KeyboardEvent | FocusEvent) {
+  if (!event || !event.target) return;
+
+  const eventTarget = event.currentTarget as HTMLInputElement;
+  const inputValue = eventTarget.name;
+
+  props.onPatch({ priority: parseInt(inputValue) });
 }
 </script>
 
 <style lang="scss" scoped>
 .todo-item {
-  @apply flex w-full border-b border-zinc-600 bg-zinc-100 px-3 dark:bg-zinc-800 md:p-0;
+  @apply flex w-full items-center border-b border-zinc-600 bg-zinc-100 px-3 dark:bg-zinc-800 md:p-0;
 
   .content {
     @apply ml-2 w-full py-2;

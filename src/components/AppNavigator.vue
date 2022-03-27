@@ -4,7 +4,7 @@
       <BaseIcon icon="close-circle-f" class="h-10 w-10 text-2xl text-zinc-400" />
     </button>
     <div class="userProfile">
-      <span>{{ username || 'Local Storage' }}</span>
+      <span>Local Storage</span>
       <button @click="logOut">
         <BaseIcon class="h-10 w-10 md:h-5 md:w-5" icon="log-out" />
       </button>
@@ -21,12 +21,13 @@
 import { useConfigStore } from '../stores/config';
 import router from '../router';
 import { useTodoStore } from '../stores/todo';
+import { TodoEntryPriority, TodoEntryState } from '../types/Todo';
 
 defineProps({
   isNavigationOpen: Boolean,
 });
 
-defineEmits(['toggleNavigation']);
+const emit = defineEmits(['toggleNavigation', 'filterEntries']);
 
 const configStore = useConfigStore();
 
@@ -40,45 +41,66 @@ const todoStore = useTodoStore();
 const endpoints = reactive({
   tasks: [
     {
+      id: 0,
       name: 'All States',
       icon: 'inboxes-f',
       active: true,
+      event: () => emit('filterEntries', 'state'),
     },
     {
+      id: 1,
       name: 'Open',
       icon: 'cogs',
+      event: () => emit('filterEntries', 'state', TodoEntryState.Open),
     },
     {
+      id: 2,
       name: 'Closed',
       icon: 'task-list',
+      event: () => emit('filterEntries', 'state', TodoEntryState.Closed),
     },
   ],
   priority: [
     {
+      id: 3,
       name: 'All Priorities',
       icon: 'chevrons-square-up-f',
       active: true,
+      event: () => emit('filterEntries', 'priority'),
     },
     {
+      id: 4,
       name: 'High',
       icon: 'chevron-square-up',
+      event: () => emit('filterEntries', 'priority', TodoEntryPriority.High),
     },
     {
+      id: 5,
       name: 'Medium',
       icon: 'chevron-square-middle',
+      event: () => emit('filterEntries', 'priority', TodoEntryPriority.Medium),
     },
     {
+      id: 6,
       name: 'Low',
       icon: 'chevron-square-down',
+      event: () => emit('filterEntries', 'priority', TodoEntryPriority.Low),
     },
   ],
   categories: [
     {
+      id: 7,
       name: 'All Categories',
       icon: 'tags-f',
       active: true,
+      event: () => emit('filterEntries', 'category'),
     },
-    ...todoStore.categories.map((category: any) => ({ ...category, icon: 'tag' })),
+    ...todoStore.categories.map((category: any, index) => ({
+      ...category,
+      icon: 'tag',
+      id: 8 + index,
+      event: () => emit('filterEntries', 'category', category.id),
+    })),
   ],
 });
 </script>

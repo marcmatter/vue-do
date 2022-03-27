@@ -2,7 +2,7 @@
   <div class="mt-2 h-full w-full">
     <BaseButton icon="plus" class="!h-12 !w-full" @click="addEntry()">Add Item</BaseButton>
     <Draggable
-      :list="[...todoStore.entries]"
+      :list="[...entries]"
       group="todoStore_entries"
       item-key="id"
       @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
@@ -23,9 +23,16 @@
 import Draggable from 'vuedraggable';
 import { useTodoStore } from '../stores/todo';
 import BaseButton from './BaseButton.vue';
-import { TodoEntryPriority, TodoEntryState } from '../types/Todo';
+import { TodoEntry, TodoEntryPriority, TodoEntryState } from '../types/Todo';
 
 const todoStore = useTodoStore();
+
+const { entries } = defineProps({
+  entries: {
+    type: Array as PropType<TodoEntry[]>,
+    require: true,
+  },
+});
 
 const addEntry = () => {
   todoStore.addEntry(
@@ -33,12 +40,12 @@ const addEntry = () => {
       name: '',
       state: TodoEntryState.Open,
       priority: TodoEntryPriority.Medium,
-      id: Date.now(),
+      id: 0,
     },
     0
   );
   setTimeout(() => {
-    const newEntryTitle = document.querySelector('.todo-item .title');
+    const newEntryTitle: HTMLInputElement | null = document.querySelector('.todo-item .title');
     if (newEntryTitle) {
       newEntryTitle.focus();
     }
