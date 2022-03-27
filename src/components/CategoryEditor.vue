@@ -1,56 +1,49 @@
 <template>
-  <div class="absolute top-0 left-0 z-10 h-full w-full bg-black bg-opacity-50">
-    <div class="fixed top-0 left-0 flex h-full w-full items-center justify-center">
-      <div class="min-w-[36rem] rounded-xl bg-zinc-800 p-8">
+  <div class="absolute w-full h-full top-0 left-0 bg-black bg-opacity-50 z-10">
+    <div class="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+      <div class="md:w-[36rem] h-full md:h-auto max-w-screen px-4 py-8 md:px-8 bg-zinc-100 dark:bg-zinc-800 md:rounded-xl">
         <div class="flex">
-          <h1 class="mr-auto text-xl">Categories</h1>
-          <BaseIcon
-            class="my-auto h-8 w-8 cursor-pointer opacity-60 hover:opacity-100"
-            icon="close"
-            @click="$emit('close')"
-          />
+          <h1 class="text-xl mr-auto">Categories</h1>
+          <BaseIcon class="my-auto h-8 w-8 cursor-pointer opacity-60 hover:opacity-100" icon="close" @click="$emit('close')" />
         </div>
-        <div class="mt-4 mb-2 flex">
+        <div class="flex mt-4 mb-2">
           <BaseInput
-            class="mr-4 w-full"
+            class="w-full mr-4"
             placeholder="New category name..."
             :onEnter="addCategory"
             :value="newCategoryName"
-            @input="(v) => (newCategoryName = v.target.value)"
+            @input="v => newCategoryName = v.target.value"
           />
           <BaseButton @click="addCategory">Add</BaseButton>
         </div>
         <Draggable
-          class="mt-2 max-h-[30rem] overflow-y-auto"
-          :list="[...todoStore.categories]"
-          group="todoStore_categories"
-          item-key="id"
-          @end="(event) => todoStore.moveCategory(todoStore.categories[event.oldIndex].id, event.newIndex)"
+            class="mt-2 md:max-h-[30rem] overflow-y-auto"
+            :list="[...todoStore.categories]"
+            group="todoStore_categories"
+            item-key="id"
+            @end="(event) => todoStore.moveCategory(todoStore.categories[event.oldIndex].id, event.newIndex)"
         >
           <template #item="{ element }">
-            <div :key="element.id" class="flex select-none items-center p-2">
-              <BaseIcon icon="tag" class="mr-4 shrink-0 text-zinc-300" />
-              <div class="w-full">
+            <div
+              :key="element.id"
+              class="flex items-center p-2 select-none shrink"
+            >
+              <BaseIcon icon="tag" class="mr-4 text-zinc-300 shrink-0" />
+              <div class="w-full shrink">
                 <input
-                  class="title bg-transparent text-lg"
+                  class="title bg-transparent text-lg shrink min-w-0 w-full"
                   :value="element.name"
-                  @keypress.enter="(ev) => todoStore.patchCategory(element.id, { name: ev.target.value })"
-                  @blur="(ev) => todoStore.patchCategory(element.id, { name: ev.target.value })"
+                  @keypress.enter="ev => todoStore.patchCategory(element.id, { name: ev.target.value })"
+                  @blur="ev => todoStore.patchCategory(element.id, { name: ev.target.value })"
                   type="text"
                 />
                 <p class="text-sm text-zinc-400">{{ todoStore.getEntriesForCategory(element.id).length }} entries</p>
               </div>
-              <div class="popup-container relative py-2">
-                <BaseIcon
-                  icon="close-circle"
-                  @click="
-                    todoStore.getEntriesForCategory(element.id).length === 0 && todoStore.deleteCategory(element.id)
-                  "
-                  class="mx-2 h-6 w-6 shrink-0 text-zinc-400 hover:text-white"
-                />
+              <div class="relative popup-container py-2">
+                <BaseIcon icon="close-circle" @click="todoStore.getEntriesForCategory(element.id).length === 0 && todoStore.deleteCategory(element.id)" class="mx-2 h-6 w-6 text-zinc-400 hover:text-black dark:hover:text-white shrink-0" />
                 <div
                   v-if="todoStore.getEntriesForCategory(element.id).length !== 0"
-                  class="popup absolute right-0 bottom-full z-20 w-[17rem] rounded bg-zinc-700 p-1 px-3 text-justify text-sm"
+                  class="popup absolute w-[17rem] z-20 right-0 bottom-full text-justify bg-zinc-700 p-1 px-3 text-sm rounded"
                 >
                   You can't delete this category as long as it has entries assigned to it.
                 </div>
@@ -72,7 +65,6 @@ const todoStore = useTodoStore();
 const newCategoryName = ref('');
 
 const addCategory = () => {
-  console.log(newCategoryName.value);
   if (newCategoryName.value) {
     todoStore.addCategory({
       id: 0,
