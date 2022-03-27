@@ -10,7 +10,7 @@ import { TodoEntry } from '../types/Todo';
 
 const emit = defineEmits(['toggleNavigation']);
 
-const props = defineProps({
+const props: any = defineProps({
   entries: {
     type: Array as PropType<TodoEntry[]>,
     require: true,
@@ -19,5 +19,9 @@ const props = defineProps({
 
 const toggleNavigation = () => {
   emit('toggleNavigation');
+};
+
+const queryEntriesByName = (searchTerm) => {
+  props.entries.filter((entry) => entry.name.includes(searchTerm));
 };
 </script>

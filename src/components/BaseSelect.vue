@@ -33,7 +33,7 @@
       :class="{ hidden: !autocomplete.show }"
     >
       <li v-for="element in options" :key="element.name">
-        <button class="flex w-full gap-2 p-2 hover:bg-grey" :name="element.id" @click="selectOption">
+        <button class="flex w-full gap-2 p-2 text-white hover:bg-grey" :name="element.id" @click="selectOption">
           <BaseIcon v-if="element.icon" :icon="element.icon" />
           <span>{{ element.name }}</span>
         </button>

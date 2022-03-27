@@ -51,12 +51,14 @@
       </div>
     </div>
     <BaseSelect
-      class="h-8 w-44"
+      class="h-8 w-40"
+      :class="`priority${todoItem.priority}`"
       :options="todoStore.priorities"
       :selectedOption="todoStore.priorities.find((prio) => prio.id === todoItem.priority)"
       :onChange="changePriority"
       :showRemoveValue="false"
     />
+    <BaseIcon icon="close-circle" @click="onDelete()" class="mx-2 h-7 w-7 text-zinc-400 hover:text-white" />
   </div>
 </template>
 
@@ -168,6 +170,14 @@ function changePriority(event: KeyboardEvent | FocusEvent) {
   @apply relative;
   &::before {
     @apply absolute top-0 left-0 h-full w-full bg-zinc-200 content-[''] dark:bg-grey;
+  }
+}
+.priority {
+  &0 {
+    @apply text-secondary;
+  }
+  &2 {
+    @apply text-primary;
   }
 }
 </style>
