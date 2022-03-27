@@ -3,6 +3,7 @@
     <BaseButton icon="plus" class="!h-12 !w-full" @click="addEntry()">Add Item</BaseButton>
     <Draggable
       :list="[...props.entries]"
+      v-if="props.entries.length > 0"
       group="todoStore_entries"
       item-key="id"
       @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
@@ -16,6 +17,10 @@
         />
       </template>
     </Draggable>
+    <div v-else class="flex h-40 flex-col items-center justify-center">
+      <BaseIcon icon="help" class="h-12 w-12 mb-2" />
+      <span>No entries found</span>
+    </div>
   </div>
 </template>
 
@@ -24,6 +29,7 @@ import Draggable from 'vuedraggable';
 import { useTodoStore } from '../stores/todo';
 import BaseButton from './BaseButton.vue';
 import { TodoEntry, TodoEntryPriority, TodoEntryState } from '../types/Todo';
+import BaseIcon from './BaseIcon.vue';
 
 const todoStore = useTodoStore();
 

@@ -16,6 +16,7 @@
       :value="value"
       @keydown.enter="onEnter"
       @input="onInput"
+      @change="onChange"
     />
   </div>
 </template>
@@ -51,6 +52,10 @@ defineProps({
     required: false,
   },
   onEnter: {
+    type: Function as PropType<(payload: Event) => void>,
+    required: false,
+  },
+  onChange: {
     type: Function as PropType<(payload: Event) => void>,
     required: false,
   },

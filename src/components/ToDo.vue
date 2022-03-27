@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full">
-    <ToDoTools @toggleNavigation="toggleNavigation" />
-    <ToDoList :entries="props.entries" />
+    <ToDoTools @toggleNavigation="toggleNavigation" @queryEntriesByName="queryEntriesByName" />
+    <ToDoList :entries="queryEntries || props.entries" />
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 import { TodoEntry } from '../types/Todo';
 
 const emit = defineEmits(['toggleNavigation']);
+const queryEntries = ref(undefined);
 
 const props: any = defineProps({
   entries: {
@@ -19,5 +20,9 @@ const props: any = defineProps({
 
 const toggleNavigation = () => {
   emit('toggleNavigation');
+};
+
+const queryEntriesByName = (searchTerm) => {
+  queryEntries.value = props.entries.filter((entry) => entry.name.toLowerCase().includes(searchTerm.toLowerCase()));
 };
 </script>
