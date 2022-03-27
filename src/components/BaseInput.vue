@@ -14,6 +14,7 @@
       :type="type"
       :placeholder="placeholder"
       :value="value"
+      @keydown.enter="onEnter"
       @input="onInput"
     />
   </div>
@@ -49,5 +50,9 @@ defineProps({
     type: Function as PropType<(payload: Event) => void>,
     required: false,
   },
+  onEnter: {
+    type: Function as PropType<(payload: Event) => void>,
+    required: false,
+  }
 });
 </script>

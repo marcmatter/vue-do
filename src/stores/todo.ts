@@ -87,40 +87,43 @@ export const useTodoStore = defineStore('todoStore', {
   },
 
   actions: {
-    getEntriesForCategory(entries: TodoEntry[], categoryId: number) {
+    getEntriesForCategory(categoryId: number) {
       if (categoryId !== undefined) {
         const entryIds = this.entriesToCategories.filter((el) => el.categoryId === categoryId).map((el) => el.entryId);
-        return entries.filter((el) => entryIds.includes(el.id));
+        return this.entries.filter((el) => entryIds.includes(el.id));
       }
-      return entries;
+      return this.entries;
     },
-    getEntriesForState(entries: TodoEntry[], entryState: TodoEntryState) {
+    getEntriesForState(entryState: TodoEntryState) {
       if (entryState !== undefined) {
-        return entries.filter((el) => el.state === entryState);
+        return this.entries.filter((el) => el.state === entryState);
       }
-      return entries;
+      return this.entries;
     },
-    getEntriesForPriority(entries: TodoEntry[], entryPriority: TodoEntryPriority) {
+    getEntriesForPriority(entryPriority: TodoEntryPriority) {
       if (entryPriority !== undefined) {
-        return entries.filter((el) => el.priority === entryPriority);
+        return this.entries.filter((el) => el.priority === entryPriority);
       }
-      return entries;
+      return this.entries;
     },
     addEntry(entry: TodoEntry, position?: number) {
       const entryId = Math.max(...this.entries.map((el) => el.id)) + 1;
-      entry = { ...entry, id: entryId };
+      const newEntry = { ...entry, id: entryId };
 
       if (position != null) {
-        this.entries.splice(position, 0, entry);
+        this.entries.splice(position, 0, newEntry);
       } else {
-        this.entries.push(entry);
+        this.entries.push(newEntry);
       }
     },
     addCategory(category: TodoCategory, position?: number) {
+      const categoryId = Math.max(...this.categories.map((el) => el.id)) + 1;
+      const newCategory = {  ...category, id: categoryId };
+
       if (position != null) {
-        this.categories.splice(position, 0, category);
+        this.categories.splice(position, 0, newCategory);
       } else {
-        this.categories.push(category);
+        this.categories.push(newCategory);
       }
     },
     moveEntry(entryId: number, newPosition: number) {

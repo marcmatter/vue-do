@@ -12,7 +12,11 @@
     <nav>
       <AppNavigatorSection title="States" :endpoints="endpoints.tasks" />
       <AppNavigatorSection title="Priorities" :endpoints="endpoints.priority" />
-      <AppNavigatorSection title="Categories" :endpoints="endpoints.categories" />
+      <AppNavigatorSection title="Categories" :endpoints="[...endpoints.categories, ...categories]">
+        <template #title>
+          <BaseIcon class="w-4 h-4 ml-auto mb-auto hover:text-zinc-300 cursor-pointer" icon="pencil" @click="$emit('toggleCategoryEditor')" />
+        </template>
+      </AppNavigatorSection>
     </nav>
   </aside>
 </template>
@@ -37,6 +41,13 @@ const logOut = () => {
 };
 
 const todoStore = useTodoStore();
+
+const categories = computed(() => todoStore.categories.map((category: any, index) => ({
+  ...category,
+  icon: 'tag',
+  id: 8 + index,
+  event: () => emit('filterEntries', 'category', category.id),
+})));
 
 const endpoints = reactive({
   tasks: [
@@ -94,15 +105,11 @@ const endpoints = reactive({
       icon: 'tags-f',
       active: true,
       event: () => emit('filterEntries', 'category'),
-    },
-    ...todoStore.categories.map((category: any, index) => ({
-      ...category,
-      icon: 'tag',
-      id: 8 + index,
-      event: () => emit('filterEntries', 'category', category.id),
-    })),
+    }
   ],
 });
+
+
 </script>
 
 <style scoped>
