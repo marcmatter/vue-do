@@ -51,14 +51,30 @@
       </div>
     </div>
     <BaseSelect
-      class="h-8 w-40"
+      class="mr-2 h-8"
+      placeholderIcon="tags-f"
+      :options="todoStore.categories.map((category) => ({ ...category, icon: 'tag' }))"
+      :selectedOption="
+        todoStore.getEntryCategory(todoItem.id)
+          ? { ...todoStore.getEntryCategory(todoItem.id), icon: 'tag' }
+          : undefined
+      "
+      :onChange="(event) => todoStore.addEntryToCategory(todoItem.id, parseInt(event.currentTarget.name))"
+      :onRemove="(event) => todoStore.removeEntryFromCategory(todoItem.id)"
+    />
+    <BaseSelect
+      class="h-8 w-52"
       :class="`priority${todoItem.priority}`"
       :options="todoStore.priorities"
       :selectedOption="todoStore.priorities.find((prio) => prio.id === todoItem.priority)"
       :onChange="changePriority"
       :showRemoveValue="false"
     />
-    <BaseIcon icon="close-circle" @click="onDelete()" class="mx-2 h-7 w-7 text-zinc-400 hover:text-white" />
+    <BaseIcon
+      icon="close-circle"
+      @click="onDelete()"
+      class="mx-2 h-7 w-7 text-zinc-400 hover:text-zinc-700 dark:hover:text-white"
+    />
   </div>
 </template>
 

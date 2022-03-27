@@ -166,10 +166,26 @@ export const useTodoStore = defineStore('todoStore', {
     deleteCategory(categoryId: number) {
       const categoryIndex = this.categories.findIndex((el) => el.id === categoryId);
 
-      this.categories.splice(categoryIndex, 1);
+      const isCategoryEmpty = !this.entriesToCategories.some((el) => el.categoryId === categoryIndex);
+
+      if (isCategoryEmpty) {
+        this.categories.splice(categoryIndex, 1);
+      }
+    },
+    getEntryCategory(entryId: number) {
+      const categoryToEntry = this.entriesToCategories.find((el) => el.entryId === entryId);
+      if (categoryToEntry) {
+        const categoryId = categoryToEntry.categoryId;
+        return this.categories.find((el) => el.id === categoryId);
+      }
     },
     addEntryToCategory(entryId: number, categoryId: number) {
       const hasExisting = this.entriesToCategories.some((el) => el.categoryId === categoryId && el.entryId === entryId);
+      const entryCategory = this.entriesToCategories.find((el) => el.entryId === entryId);
+
+      if (entryCategory) {
+        this.removeEntryFromCategory(entryCategory.entryId);
+      }
 
       if (!hasExisting) {
         this.entriesToCategories.push({
@@ -178,10 +194,8 @@ export const useTodoStore = defineStore('todoStore', {
         });
       }
     },
-    removeEntryFromCategory(entryId: number, categoryId: number) {
-      const existingEntryIndex = this.entriesToCategories.findIndex(
-        (el) => el.categoryId === categoryId && el.entryId === entryId
-      );
+    removeEntryFromCategory(entryId: number) {
+      const existingEntryIndex = this.entriesToCategories.findIndex((el) => el.entryId === entryId);
 
       if (existingEntryIndex !== -1) {
         this.entriesToCategories.splice(existingEntryIndex, 1);

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-30 absolute top-full left-0 mt-2 rounded-lg bg-zinc-600 p-2 shadow">
+  <div class="h-30 absolute top-full left-0 z-20 mt-2 rounded-lg bg-zinc-600 p-2 shadow">
     <ul>
       <li>
         <BaseSelect

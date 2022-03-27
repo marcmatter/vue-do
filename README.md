@@ -3,7 +3,7 @@
 ## Konzept 📝
 Als Schulprojekt haben Neo (@justablob) und Marc (@marcmatter) eine Todo Web-App erstellt.
 Dabei wurden moderne Web Technologien wie [Typescript](https://www.typescriptlang.org/) und [Vue.js](https://vuejs.org/) 
-eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechene Todo App zu bieten, welche im Alltag einfach auf einem Mobil- oder Desktopgerät verwendet werden kann.
+eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechende Todo App zu bieten, welche im Alltag einfach auf einem Mobil- und Desktop geräten verwendet werden kann.
 
 |             | Mockup                                                            |
 |-------------|-------------------------------------------------------------------|
@@ -20,7 +20,7 @@ eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechene
 ### Phase 2️⃣
 - [x] Basis Komponenten erstellen z.B. BaseButton, BaseInput,...
 - [x] Login Seite integrieren.
-- [x] Primitives Startseite Ui.
+- [x] Primitives Startseiten Ui.
 
 ### Phase 3️⃣
 - [x] Implementierung State Management Bibliothek [pinia](https://pinia.vuejs.org/).
@@ -32,7 +32,7 @@ eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechene
 - [ ] Drag and Drop Aktionen.
 - [ ] Cypress Test Scripts.
 
-🙋‍♂️Weitere informationen -> [Changelog](./documentation/changelog.md)
+🙋‍️Weitere informationen -> [Changelog](./documentation/changelog.md)
 
 ## Vergleich mit Mockup und Endresultat 🔎
 |             | Mockup                                                            | Resultat                                                          |
