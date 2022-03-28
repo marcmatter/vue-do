@@ -4,23 +4,23 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./src/components/AppFooter.vue')['default']
-    AppHeaderBar: typeof import('./src/components/AppHeaderBar.vue')['default']
-    AppNavigator: typeof import('./src/components/AppNavigator.vue')['default']
-    AppNavigatorSection: typeof import('./src/components/AppNavigatorSection.vue')['default']
-    BaseButton: typeof import('./src/components/BaseButton.vue')['default']
-    BaseIcon: typeof import('./src/components/BaseIcon.vue')['default']
-    BaseInput: typeof import('./src/components/BaseInput.vue')['default']
-    BaseSelect: typeof import('./src/components/BaseSelect.vue')['default']
-    BaseSeparator: typeof import('./src/components/BaseSeparator.vue')['default']
-    CategoryEditor: typeof import('./src/components/CategoryEditor.vue')['default']
-    ToDo: typeof import('./src/components/ToDo.vue')['default']
-    ToDoList: typeof import('./src/components/ToDoList.vue')['default']
-    ToDoListAdd: typeof import('./src/components/ToDoListAdd.vue')['default']
-    ToDoListItem: typeof import('./src/components/ToDoListItem.vue')['default']
-    ToDoTools: typeof import('./src/components/ToDoTools.vue')['default']
-    ToDoToolsFilter: typeof import('./src/components/ToDoToolsFilter.vue')['default']
+    AppFooter: typeof import('./src/components/AppFooter.vue')['default'];
+    AppHeaderBar: typeof import('./src/components/AppHeaderBar.vue')['default'];
+    AppNavigator: typeof import('./src/components/AppNavigator.vue')['default'];
+    AppNavigatorSection: typeof import('./src/components/AppNavigatorSection.vue')['default'];
+    BaseButton: typeof import('./src/components/BaseButton.vue')['default'];
+    BaseIcon: typeof import('./src/components/BaseIcon.vue')['default'];
+    BaseInput: typeof import('./src/components/BaseInput.vue')['default'];
+    BaseSelect: typeof import('./src/components/BaseSelect.vue')['default'];
+    BaseSeparator: typeof import('./src/components/BaseSeparator.vue')['default'];
+    CategoryEditor: typeof import('./src/components/CategoryEditor.vue')['default'];
+    ToDo: typeof import('./src/components/ToDo.vue')['default'];
+    ToDoList: typeof import('./src/components/ToDoList.vue')['default'];
+    ToDoListAdd: typeof import('./src/components/ToDoListAdd.vue')['default'];
+    ToDoListItem: typeof import('./src/components/ToDoListItem.vue')['default'];
+    ToDoTools: typeof import('./src/components/ToDoTools.vue')['default'];
+    ToDoToolsFilter: typeof import('./src/components/ToDoToolsFilter.vue')['default'];
   }
 }
 
-export { }
+export {};
