@@ -1,13 +1,21 @@
 <template>
   <div class="mt-3">
     <div class="mb-1 px-2 text-lg text-zinc-400 md:text-xs">
-      <p class="pl-1 pb-1 uppercase md:pb-0.5">{{ title }}</p>
+      <div class="flex">
+        <p class="pl-1 pb-1 uppercase md:pb-0.5">{{ title }}</p>
+        <slot name="title" />
+      </div>
       <hr class="border-zinc-300 dark:border-zinc-500" />
     </div>
     <ul>
       <li v-for="endpoint in endpoints" :key="endpoint.name">
-        <a href="javascript:void(0)" class="navigationButton" :class="{ active: endpoint.active }">
-          <BaseIcon :icon="endpoint.icon" class="mr-4 h-8 md:mr-0 md:h-4" />
+        <a
+          href="javascript:void(0)"
+          @click="selectEndPoint(endpoint)"
+          class="navigationButton"
+          :class="{ active: endpoint.active }"
+        >
+          <BaseIcon :icon="endpoint.icon" class="mr-4 h-8 md:mr-1 md:h-4" />
           {{ endpoint.name }}
         </a>
       </li>
@@ -16,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -26,6 +34,12 @@ defineProps({
     required: true,
   },
 });
+
+const selectEndPoint = (endpoint) => {
+  props.endpoints.forEach((_endpoint) => (_endpoint.active = false));
+  endpoint.active = true;
+  endpoint.event();
+};
 </script>
 
 <style scoped lang="scss">
@@ -36,7 +50,7 @@ defineProps({
   }
 }
 .navigationButton {
-  @apply flex items-center rounded py-5 px-3 text-2xl text-zinc-500 transition;
+  @apply flex items-center rounded py-3.5 px-5 text-xl text-zinc-500 transition;
   @apply hover:bg-zinc-200 hover:text-zinc-700;
   @apply dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-zinc-50;
   @apply md:p-1 md:text-base;

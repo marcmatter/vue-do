@@ -14,7 +14,7 @@
         target="_blank"
         class="transition hover:scale-125 hover:text-secondary"
       >
-        <Icon :icon="socialLink.name + '-circle'" class="mx-1 h-full w-8" />
+        <BaseIcon :icon="socialLink.name + '-circle'" class="mx-1 h-full w-8" />
       </a>
     </div>
   </footer>

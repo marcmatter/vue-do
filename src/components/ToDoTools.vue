@@ -4,12 +4,26 @@
       <BaseIcon icon="align-justify" class="h-10 w-10 text-zinc-400" />
     </button>
     <div class="flex flex-wrap items-center gap-2">
-      <BaseInput icon="search" type="text" placeholder="Search" class="w-full md:w-1/2" />
-      <BaseButton icon="plus" class="relative h-8">Add Filter<ToDoToolsFilter /></BaseButton>
+      <BaseInput
+        icon="search"
+        type="text"
+        placeholder="Search"
+        :onInput="(event) => emit('queryEntriesByName', event.target.value)"
+        class="w-full md:w-1/2"
+      />
+      <div class="relative">
+        <BaseButton icon="filter" class="h-8" @click="toggleFilter">Add Filter</BaseButton>
+        <ToDoToolsFilter :class="{ hidden: !filter.show }" />
+      </div>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['toggleNavigation']);
+const emit = defineEmits(['toggleNavigation', 'queryEntriesByName']);
+const filter = reactive({ show: false });
+
+const toggleFilter = () => {
+  filter.show = !filter.show;
+};
 </script>
