@@ -24,22 +24,14 @@ const todoStore = useTodoStore();
 const isNavigationOpen = ref(false);
 const isCategoryEditorOpen = ref(false);
 const entries: Ref<TodoEntry[]> = ref(todoStore.entries);
+const filterProps = reactive({ state: undefined, category: undefined, priority: undefined });
 
 const filterEntries = (method, value?) => {
-  switch (method) {
-    case 'state':
-      entries.value = todoStore.getEntriesForState(value);
-      break;
-    case 'category':
-      entries.value = todoStore.getEntriesForCategory(value);
-      break;
-    case 'priority':
-      entries.value = todoStore.getEntriesForPriority(value);
-      break;
-    default:
-      entries.value = todoStore.entries;
-      break;
-  }
+  filterProps[method] = value;
+  entries.value = todoStore.entries;
+  entries.value = todoStore.getEntriesForState(filterProps.state, entries.value);
+  entries.value = todoStore.getEntriesForCategory(filterProps.category, entries.value);
+  entries.value = todoStore.getEntriesForPriority(filterProps.priority, entries.value);
 };
 </script>
 

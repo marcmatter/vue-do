@@ -73,7 +73,7 @@
     <BaseIcon
       icon="close-circle"
       @click="onDelete()"
-      class="mx-2 h-7 w-7 text-zinc-400 hover:text-zinc-700 dark:hover:text-white"
+      class="mx-2 h-7 w-10 text-zinc-400 hover:text-zinc-700 dark:hover:text-white"
     />
   </div>
 </template>

@@ -18,7 +18,7 @@
       </template>
     </Draggable>
     <div v-else class="flex h-40 flex-col items-center justify-center">
-      <BaseIcon icon="help" class="h-12 w-12 mb-2" />
+      <BaseIcon icon="help" class="mb-2 h-12 w-12" />
       <span>No entries found</span>
     </div>
   </div>
@@ -27,9 +27,7 @@
 <script lang="ts" setup>
 import Draggable from 'vuedraggable';
 import { useTodoStore } from '../stores/todo';
-import BaseButton from './BaseButton.vue';
 import { TodoEntry, TodoEntryPriority, TodoEntryState } from '../types/Todo';
-import BaseIcon from './BaseIcon.vue';
 
 const todoStore = useTodoStore();
 

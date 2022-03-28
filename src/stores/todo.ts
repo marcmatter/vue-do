@@ -87,24 +87,24 @@ export const useTodoStore = defineStore('todoStore', {
   },
 
   actions: {
-    getEntriesForCategory(categoryId: number) {
+    getEntriesForCategory(categoryId?: number, entries?: TodoEntry[]) {
       if (categoryId !== undefined) {
         const entryIds = this.entriesToCategories.filter((el) => el.categoryId === categoryId).map((el) => el.entryId);
-        return this.entries.filter((el) => entryIds.includes(el.id));
+        return (entries || this.entries).filter((el) => entryIds.includes(el.id));
       }
-      return this.entries;
+      return entries || this.entries;
     },
-    getEntriesForState(entryState: TodoEntryState) {
+    getEntriesForState(entryState?: TodoEntryState, entries?: TodoEntry[]) {
       if (entryState !== undefined) {
-        return this.entries.filter((el) => el.state === entryState);
+        return (entries || this.entries).filter((el) => el.state === entryState);
       }
-      return this.entries;
+      return entries || this.entries;
     },
-    getEntriesForPriority(entryPriority: TodoEntryPriority) {
+    getEntriesForPriority(entryPriority?: TodoEntryPriority, entries?: TodoEntry[]) {
       if (entryPriority !== undefined) {
-        return this.entries.filter((el) => el.priority === entryPriority);
+        return (entries || this.entries).filter((el) => el.priority === entryPriority);
       }
-      return this.entries;
+      return entries || this.entries;
     },
     addEntry(entry: TodoEntry, position?: number) {
       const entryId = Math.max(...this.entries.map((el) => el.id)) + 1;
