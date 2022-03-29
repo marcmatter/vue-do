@@ -1,6 +1,6 @@
 <template>
   <div class="mt-2 h-full w-full">
-    <BaseButton icon="plus" class="!h-12 !w-full" @click="addEntry()">Add Item</BaseButton>
+    <BaseButton icon="plus" class="!h-12 !w-full" @click="addEntry()" data-cy="addEntryBtn">Add Item</BaseButton>
     <Draggable
       :list="[...props.entries]"
       v-if="props.entries.length > 0"

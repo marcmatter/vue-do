@@ -61,6 +61,7 @@
       "
       :onChange="(event) => todoStore.addEntryToCategory(todoItem.id, parseInt(event.currentTarget.name))"
       :onRemove="(event) => todoStore.removeEntryFromCategory(todoItem.id)"
+      data-cy="entryCategorySelect"
     />
     <BaseSelect
       class="h-8 w-52"
@@ -69,6 +70,7 @@
       :selectedOption="todoStore.priorities.find((prio) => prio.id === todoItem.priority)"
       :onChange="changePriority"
       :showRemoveValue="false"
+      data-cy="entryPrioritySelect"
     />
     <BaseIcon
       icon="close-circle"

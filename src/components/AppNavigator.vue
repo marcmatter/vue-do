@@ -10,14 +10,19 @@
       </button>
     </div>
     <nav>
-      <AppNavigatorSection title="States" :endpoints="endpoints.tasks" />
-      <AppNavigatorSection title="Priorities" :endpoints="endpoints.priority" />
-      <AppNavigatorSection title="Categories" :endpoints="[...endpoints.categories, ...categories]">
+      <AppNavigatorSection title="States" data-cy="navStates" :endpoints="endpoints.tasks" />
+      <AppNavigatorSection title="Priorities" data-cy="navPriorities" :endpoints="endpoints.priority" />
+      <AppNavigatorSection
+        title="Categories"
+        data-cy="navCategories"
+        :endpoints="[...endpoints.categories, ...categories]"
+      >
         <template #title>
           <BaseIcon
             class="ml-auto mb-auto h-4 w-4 cursor-pointer hover:text-zinc-300"
             icon="pencil"
             @click="$emit('toggleCategoryEditor')"
+            data-cy="manageCategories"
           />
         </template>
       </AppNavigatorSection>
