@@ -2,7 +2,6 @@ const testEntryTitle = 'This is a Cypress Test';
 
 describe('create entries', () => {
   before(() => {
-    cy.wait(5000);
     cy.visit(Cypress.env('host'));
     cy.wait(300);
     localStorage.clear();
