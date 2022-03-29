@@ -48,6 +48,8 @@ eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechend
 
 ## Funktionstests mit [cypress.io](https://www.cypress.io/) 🤖
 
+-> [⚙️ Letzte Github Cypress Workflows](https://github.com/marcmatter/vue-do/actions/workflows/main.yml)
+
 ### Cypress Test starten 🏃‍♂️
 - Headless:
   `
@@ -83,7 +85,7 @@ manage categories
 - ✓ assign entry to new category (1031ms)
 - ✓ filter new category (457ms)
 - ✓ check unable to delete category with assigned entry (529ms)
-- ✓ delete category (499ms)
+- ✓ delete category (499ms
 
 ## Feedback 💬
 ### - Neo (@justablob)
