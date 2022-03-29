@@ -10,6 +10,7 @@
             class="my-auto h-8 w-8 cursor-pointer opacity-60 hover:opacity-100"
             icon="close"
             @click="$emit('close')"
+            data-cy="closeCategoryEditorBtn"
           />
         </div>
         <div class="mt-4 mb-2 flex">
@@ -19,8 +20,9 @@
             :onEnter="addCategory"
             :value="newCategoryName"
             @input="(v) => (newCategoryName = v.target.value)"
+            data-cy="addCategoryInput"
           />
-          <BaseButton @click="addCategory">Add</BaseButton>
+          <BaseButton @click="addCategory" data-cy="addCategoryBtn">Add</BaseButton>
         </div>
         <Draggable
           class="mt-2 overflow-y-auto md:max-h-[30rem]"
@@ -42,7 +44,7 @@
                 />
                 <p class="text-sm text-zinc-400">{{ todoStore.getEntriesForCategory(element.id).length }} entries</p>
               </div>
-              <div class="popup-container relative py-2">
+              <div class="popup-container relative py-2" :data-cy="`deleteCategoryBtn_${element.name}`">
                 <BaseIcon
                   icon="close-circle"
                   @click="

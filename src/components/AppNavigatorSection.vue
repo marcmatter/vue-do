@@ -14,6 +14,7 @@
           @click="selectEndPoint(endpoint)"
           class="navigationButton"
           :class="{ active: endpoint.active }"
+          :data-cy="endpoint.name"
         >
           <BaseIcon :icon="endpoint.icon" class="mr-4 h-8 md:mr-1 md:h-4" />
           {{ endpoint.name }}
