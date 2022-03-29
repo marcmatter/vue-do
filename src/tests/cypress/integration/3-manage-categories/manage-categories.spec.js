@@ -40,7 +40,7 @@ describe('manage categories', () => {
   });
 
   it('delete category', () => {
-    cy.get('.todo-item [data-cy=entryCategorySelect] [data-cy=removeSelectValue]').eq(1).click();
+    cy.get('.todo-item [data-cy=entryCategorySelect] [data-cy=removeSelectValue]').eq(0).click();
     cy.get('[data-cy=manageCategories]').click();
     cy.get('[data-cy="deleteCategoryBtn_Cypress"]').click();
     cy.get('[data-cy="deleteCategoryBtn_Cypress"]').should('not.exist');
