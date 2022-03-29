@@ -7,32 +7,16 @@
         :isNavigationOpen="isNavigationOpen"
         @toggleNavigation="isNavigationOpen = !isNavigationOpen"
         @toggleCategoryEditor="isCategoryEditorOpen = !isCategoryEditorOpen"
-        @filterEntries="filterEntries"
       />
-      <ToDo @toggleNavigation="isNavigationOpen = !isNavigationOpen" :entries="entries" />
+      <ToDo @toggleNavigation="isNavigationOpen = !isNavigationOpen" />
     </div>
     <CategoryEditor class="" v-if="isCategoryEditorOpen" @close="isCategoryEditorOpen = false" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useTodoStore } from '../stores/todo';
-import { TodoEntry } from '../types/Todo';
-import { Ref } from 'vue';
-const todoStore = useTodoStore();
-
 const isNavigationOpen = ref(false);
 const isCategoryEditorOpen = ref(false);
-const entries: Ref<TodoEntry[]> = ref(todoStore.entries);
-const filterProps = reactive({ state: undefined, category: undefined, priority: undefined });
-
-const filterEntries = (method, value?) => {
-  filterProps[method] = value;
-  entries.value = todoStore.entries;
-  entries.value = todoStore.getEntriesForState(filterProps.state, entries.value);
-  entries.value = todoStore.getEntriesForCategory(filterProps.category, entries.value);
-  entries.value = todoStore.getEntriesForPriority(filterProps.priority, entries.value);
-};
 </script>
 
 <style scoped></style>

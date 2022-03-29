@@ -2,8 +2,8 @@
   <div class="mt-2 h-full w-full">
     <BaseButton icon="plus" class="!h-12 !w-full" @click="addEntry()" data-cy="addEntryBtn">Add Item</BaseButton>
     <Draggable
-      :list="[...props.entries]"
-      v-if="props.entries.length > 0"
+      :list="[...todoStore.getFilteredEntries(todoStore.entries)]"
+      v-if="todoStore.getFilteredEntries(todoStore.entries).length > 0"
       group="todoStore_entries"
       item-key="id"
       @end="(event) => todoStore.moveEntry(todoStore.entries[event.oldIndex].id, event.newIndex)"
@@ -27,16 +27,9 @@
 <script lang="ts" setup>
 import Draggable from 'vuedraggable';
 import { useTodoStore } from '../stores/todo';
-import { TodoEntry, TodoEntryPriority, TodoEntryState } from '../types/Todo';
+import { TodoEntryPriority, TodoEntryState } from '../types/Todo';
 
 const todoStore = useTodoStore();
-
-const props = defineProps({
-  entries: {
-    type: Array as PropType<TodoEntry[]>,
-    require: true,
-  },
-});
 
 const addEntry = () => {
   todoStore.addEntry(

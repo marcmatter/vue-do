@@ -5,6 +5,7 @@ import {
   TodoEntryPriority,
   TodoEntryState,
   TodoEntryToCategory,
+  TodoFilterProps,
   TodoPriority,
   TodoState,
 } from '../types/Todo';
@@ -12,14 +13,20 @@ import { LocalStorageAdapter } from '../adapters/localStorage';
 import { Dayjs } from '../utils';
 import { SerializeStore } from '../types/Adapter';
 
-export interface TodoStore {
+export interface TodoStoreStorage {
   categories: TodoCategory[];
   entries: TodoEntry[];
-  priorities?: TodoPriority[];
-  states?: TodoState[];
 
   entriesToCategories: TodoEntryToCategory[];
 }
+
+export interface TodoStorePinia {
+  priorities: TodoPriority[];
+  states: TodoState[];
+  filterProps: TodoFilterProps;
+}
+
+type TodoStore = TodoStoreStorage & TodoStorePinia;
 
 export const useTodoStore = defineStore('todoStore', {
   state: (): TodoStore => {
@@ -67,6 +74,12 @@ export const useTodoStore = defineStore('todoStore', {
           icon: 'task-list',
         },
       ],
+      filterProps: {
+        searchTerm: '',
+        stateId: undefined,
+        priorityId: undefined,
+        categoryId: undefined,
+      },
       entries: [
         {
           state: TodoEntryState.Open,
@@ -204,10 +217,19 @@ export const useTodoStore = defineStore('todoStore', {
         this.entriesToCategories.splice(existingEntryIndex, 1);
       }
     },
+    getFilteredEntries(filteredEntries: TodoEntry[]) {
+      filteredEntries = this.getEntriesForState(this.filterProps.stateId, filteredEntries);
+      filteredEntries = this.getEntriesForCategory(this.filterProps.categoryId, filteredEntries);
+      filteredEntries = this.getEntriesForPriority(this.filterProps.priorityId, filteredEntries);
+      filteredEntries = filteredEntries.filter((entry) =>
+        entry.name.toLowerCase().includes(this.filterProps.searchTerm.toLowerCase())
+      );
+      return filteredEntries;
+    },
   },
 });
 
-export const serializeTodoStore: SerializeStore<TodoStore> = {
+export const serializeTodoStore: SerializeStore<TodoStoreStorage> = {
   serialize(todoStore) {
     const categories = todoStore.categories.map((el) => ({
       ...el,

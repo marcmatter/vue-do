@@ -23,6 +23,13 @@ export interface TodoPriority {
   name: string;
 }
 
+export interface TodoFilterProps {
+  searchTerm: string;
+  stateId: TodoEntryState | undefined;
+  priorityId: TodoEntryPriority | undefined;
+  categoryId: number | undefined;
+}
+
 export interface TodoEntry {
   id: number;
   name: string;
