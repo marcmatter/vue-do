@@ -10,7 +10,7 @@ jobs:
         run: npm i
 
       - name: Build App
-          run: npm run build
+        run: npm run build
 
       - uses: cypress-io/github-action@v2
         with:
