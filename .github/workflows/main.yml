@@ -16,5 +16,6 @@ jobs:
         with:
           start: npm run preview
           wait-on: "http://localhost:4173"
+          env: host=http://localhost:4173
           browser: chrome
           headless: true
