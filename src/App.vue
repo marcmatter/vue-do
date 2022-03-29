@@ -29,7 +29,7 @@ export default defineComponent({
 
   setup() {
     const configStore = useConfigStore();
-    const todoStore = useTodoStore();
+    const todoStore: any = useTodoStore();
     const showFooter = computed(() => router.currentRoute.value.meta.showFooter);
 
     onBeforeMount(() => {

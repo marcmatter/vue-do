@@ -1,6 +1,6 @@
 describe('manage categories', () => {
   before(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
     cy.wait(300);
     localStorage.clear();
   });

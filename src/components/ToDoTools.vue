@@ -8,7 +8,11 @@
         icon="search"
         type="text"
         placeholder="Search"
-        :onInput="(event) => emit('queryEntriesByName', event.target.value)"
+        :onInput="
+          (event) => {
+            todoStore.filterProps.searchTerm = event.target.value;
+          }
+        "
         class="w-full md:w-1/2"
       />
       <div class="relative">
@@ -20,9 +24,11 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['toggleNavigation', 'queryEntriesByName']);
-const filter = reactive({ show: false });
+import { useTodoStore } from '../stores/todo';
+const todoStore = useTodoStore();
 
+const emit = defineEmits(['toggleNavigation']);
+const filter = reactive({ show: false });
 const toggleFilter = () => {
   filter.show = !filter.show;
 };

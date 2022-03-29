@@ -9,9 +9,13 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      - name: Build App
+        run: npm run build
+
       - uses: cypress-io/github-action@v2
         with:
-          start: npm run dev
-          wait-on: "http://localhost:3000"
+          start: npm run preview
+          wait-on: "http://localhost:4173"
+          env: host=http://localhost:4173
           browser: chrome
           headless: true

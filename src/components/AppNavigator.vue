@@ -40,7 +40,7 @@ defineProps({
   isNavigationOpen: Boolean,
 });
 
-const emit = defineEmits(['toggleNavigation', 'filterEntries']);
+defineEmits(['toggleNavigation']);
 
 const configStore = useConfigStore();
 
@@ -56,7 +56,9 @@ const categories = computed(() =>
     ...category,
     icon: 'tag',
     id: 8 + index,
-    event: () => emit('filterEntries', 'category', category.id),
+    event: () => {
+      todoStore.filterProps.categoryId = category.id;
+    },
   }))
 );
 
@@ -67,19 +69,25 @@ const endpoints = reactive({
       name: 'All States',
       icon: 'inboxes-f',
       active: true,
-      event: () => emit('filterEntries', 'state'),
+      event: () => {
+        todoStore.filterProps.stateId = undefined;
+      },
     },
     {
       id: 1,
       name: 'Open',
       icon: 'cogs',
-      event: () => emit('filterEntries', 'state', TodoEntryState.Open),
+      event: () => {
+        todoStore.filterProps.stateId = TodoEntryState.Open;
+      },
     },
     {
       id: 2,
       name: 'Closed',
       icon: 'task-list',
-      event: () => emit('filterEntries', 'state', TodoEntryState.Closed),
+      event: () => {
+        todoStore.filterProps.stateId = TodoEntryState.Closed;
+      },
     },
   ],
   priority: [
@@ -88,25 +96,33 @@ const endpoints = reactive({
       name: 'All Priorities',
       icon: 'chevrons-square-up-f',
       active: true,
-      event: () => emit('filterEntries', 'priority'),
+      event: () => {
+        todoStore.filterProps.priorityId = undefined;
+      },
     },
     {
       id: 4,
       name: 'High',
       icon: 'chevron-square-up',
-      event: () => emit('filterEntries', 'priority', TodoEntryPriority.High),
+      event: () => {
+        todoStore.filterProps.priorityId = TodoEntryPriority.High;
+      },
     },
     {
       id: 5,
       name: 'Medium',
       icon: 'chevron-square-middle',
-      event: () => emit('filterEntries', 'priority', TodoEntryPriority.Medium),
+      event: () => {
+        todoStore.filterProps.priorityId = TodoEntryPriority.Medium;
+      },
     },
     {
       id: 6,
       name: 'Low',
       icon: 'chevron-square-down',
-      event: () => emit('filterEntries', 'priority', TodoEntryPriority.Low),
+      event: () => {
+        todoStore.filterProps.priorityId = TodoEntryPriority.Low;
+      },
     },
   ],
   categories: [
@@ -115,7 +131,9 @@ const endpoints = reactive({
       name: 'All Categories',
       icon: 'tags-f',
       active: true,
-      event: () => emit('filterEntries', 'category'),
+      event: () => {
+        todoStore.filterProps.categoryId = undefined;
+      },
     },
   ],
 });
