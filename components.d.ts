@@ -16,7 +16,6 @@ declare module 'vue' {
     CategoryEditor: typeof import('./src/components/CategoryEditor.vue')['default']
     ToDo: typeof import('./src/components/ToDo.vue')['default']
     ToDoList: typeof import('./src/components/ToDoList.vue')['default']
-    ToDoListAdd: typeof import('./src/components/ToDoListAdd.vue')['default'];
     ToDoListItem: typeof import('./src/components/ToDoListItem.vue')['default']
     ToDoTools: typeof import('./src/components/ToDoTools.vue')['default']
     ToDoToolsFilter: typeof import('./src/components/ToDoToolsFilter.vue')['default']
