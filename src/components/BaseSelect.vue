@@ -44,7 +44,7 @@
       </li>
     </ul>
     <BaseIcon
-      v-if="showRemoveValue && select.selectedOption"
+      v-if="showRemoveValue && typeof select.selectedOption?.id === 'number'"
       icon="close"
       class="my-auto h-5 w-5 flex-shrink-0 text-zinc-400"
       @click="removeSelectedOption"
