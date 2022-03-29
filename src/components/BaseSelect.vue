@@ -48,6 +48,7 @@
       icon="close"
       class="my-auto h-5 w-5 flex-shrink-0 text-zinc-400"
       @click="removeSelectedOption"
+      data-cy="removeSelectValue"
     />
     <BaseIcon icon="triangle-f" class="my-auto mr-2 h-3 w-3 flex-shrink-0 rotate-180 text-zinc-400" />
   </div>

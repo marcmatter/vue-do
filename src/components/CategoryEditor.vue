@@ -44,7 +44,7 @@
                 />
                 <p class="text-sm text-zinc-400">{{ todoStore.getEntriesForCategory(element.id).length }} entries</p>
               </div>
-              <div class="popup-container relative py-2">
+              <div class="popup-container relative py-2" :data-cy="`deleteCategoryBtn_${element.name}`">
                 <BaseIcon
                   icon="close-circle"
                   @click="
