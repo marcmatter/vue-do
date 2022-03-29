@@ -1,4 +1,4 @@
-describe('filter entries', () => {
+describe('manage categories', () => {
   before(() => {
     cy.visit('http://localhost:3000');
     cy.wait(300);
