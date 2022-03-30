@@ -1,4 +1,4 @@
-# Vue-Do
+# VueDo
 
 ## Konzept 📝
 Als Schulprojekt haben Neo ([@justablob](https://github.com/justablob)) und Marc ([@marcmatter](https://github.com/marcmatter)) eine Todo Web-App erstellt.
@@ -29,22 +29,34 @@ eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechend
 ### 4️⃣ Phase [22.03.22 - 29.03.22]
 - [x] Mobilansicht verbessern.
 - [x] Diverse Design verbesserungen.
-- [ ] Drag and Drop Aktionen.
+- [x] Drag and Drop Aktionen.
 - [x] Cypress Test Scripts.
 
 ## Vergleich mit Mockup und Endresultat 🔎
-|             | Mockup                                                            | Resultat                                                          |
-|-------------|-------------------------------------------------------------------|-------------------------------------------------------------------|
-| Login Seite | ![Mockup login page](./documentation/images/mockupLoginPage.jpg)  | ![Result login page](./documentation/images/resultLoginPage.jpg)  |
-| Startseite  | ![Mockup landing page](./documentation/images/mockupTodoPage.jpg) | ![Result landing page](./documentation/images/resultTodoPage.jpg) |
+|             | Mockup                                                            | Resultat                                                        |
+|-------------|-------------------------------------------------------------------|-----------------------------------------------------------------|
+| Login Seite | ![Mockup login page](./documentation/images/mockupLoginPage.jpg)  | ![Result login page](./documentation/images/darkLoginPage.jpg)  |
+| Startseite  | ![Mockup landing page](./documentation/images/mockupTodoPage.jpg) | ![Result landing page](./documentation/images/darkTodoPage.jpg) |
+
+### Extras 🥳
+#### Dark und Light Mode Design
+Der Dark-und Light Mode wird anhand von den Systemeinstellungen dargestellt.
+
+|             | Dark Mode                                                     | Light Mode                                                     |
+|-------------|---------------------------------------------------------------|----------------------------------------------------------------|
+| Login Seite | ![Login page dark](./documentation/images/darkLoginPage.jpg)  | ![Login page light](./documentation/images/lightLoginPage.jpg) |
+| Startseite  | ![Landing page dark](./documentation/images/darkTodoPage.jpg) | ![Login page light](./documentation/images/lightTodoPage.jpg)  |
+
 
 ## Browser Tests 👨‍🔬
+Um eine möglichst grosse Breite an Browsern zu unterstützten verwenden wir in VueDo Build Tools wie Autoprefixer, PostCSS sowie ESBuild.
 
-|                                          | Chrome 99 | Firefox 91 | Safari 15.3 |
-|------------------------------------------|-----------|------------|-------------|
-| Login Seite                              | ✔         | ✔          | ✔           |
-| Startseite                               | ✔         | ✔          | ✔           |
-| [cypress](https://www.cypress.io/) Tests | ✔         | ✔          | ✔ Manuell   |
+|                                          | Chrome 100 | Firefox 91 | Safari 15.3 |
+|------------------------------------------|------------|------------|-------------|
+| Login Seite                              | ✔          | ✔          | ✔           |
+| Startseite                               | ✔          | ✔          | ✔           |
+| [cypress](https://www.cypress.io/) Tests | ✔          | ✔          | ✔ Manuell   |
+
 
 ## Funktionstests mit [cypress.io](https://www.cypress.io/) 🤖
 
@@ -52,10 +64,12 @@ eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechend
 
 ### Cypress Test starten 🏃‍♂️
 - Headless:
+
   `
   $ npm run cy:run
   `
 - Ui interface:
+
   `
   $ npm run cy:open
   `
@@ -85,9 +99,14 @@ manage categories
 - ✓ assign entry to new category (1031ms)
 - ✓ filter new category (457ms)
 - ✓ check unable to delete category with assigned entry (529ms)
-- ✓ delete category (499ms
+- ✓ delete category (499ms)
 
 ## Feedback 💬
 ### - Neo (@justablob)
-
+Das Einrichten und die ersten Schritte am Projekt haben mir Freude gemacht.
+Danach wurde die Arbeit ein bisschen monoton - vielleicht auch, weil ich bei der
+Arbeit die ganze Zeit mit Vue arbeite.
+Doch das Projekt hat trotzdem Spass gemacht und ich glaube ich habe etwas daraus gelernt.
 ### - Marc (@marcmatter)
+Das Arbeiten an VueDo hat mir viel Freude bereitet. 
+Dieses Projekt hat mir gut geholfen neue Erfahrungen mit Vue.js zu sammeln
