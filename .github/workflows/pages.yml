@@ -1,0 +1,7 @@
+name: Deploy Pages
+actions:          
+      - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2.6.0
+        with:
+          target_branch: gh-pages
+          build_dir: dist
