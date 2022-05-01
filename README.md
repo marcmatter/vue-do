@@ -1,7 +1,7 @@
 # VueDo
 
 ## Konzept 📝
-Als Schulprojekt haben Neo ([@justablob](https://github.com/justablob)) und Marc ([@marcmatter](https://github.com/marcmatter)) eine Todo Web-App erstellt.
+Als Schulprojekt haben [@justablob](https://github.com/justablob) und Marc ([@marcmatter](https://github.com/marcmatter)) eine Todo Web-App erstellt.
 Dabei wurden moderne Web Technologien wie [Typescript](https://www.typescriptlang.org/) und [Vue.js](https://vuejs.org/) 
 eingesetzt. Das Ziel von VoDo ist eine möglichst simple und optisch ansprechende Todo App zu konstruieren, welche im Alltag einfach auf einem Mobil- und Desktop geräten verwendet werden kann.
 
