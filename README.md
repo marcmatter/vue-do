@@ -102,7 +102,7 @@ manage categories
 - ✓ delete category (499ms)
 
 ## Feedback 💬
-### - Neo (@justablob)
+### - @justablob
 Das Einrichten und die ersten Schritte am Projekt haben mir Freude gemacht.
 Danach wurde die Arbeit ein bisschen monoton - vielleicht auch, weil ich bei der
 Arbeit die ganze Zeit mit Vue arbeite.
